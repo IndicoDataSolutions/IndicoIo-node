@@ -1,0 +1,40 @@
+{
+  "name": "indico.io",
+  "description": "A Node.js wrapper for the Indico’s API",
+  "version": "0.0.1",
+  "homepage": "https://github.com/IndicoDataSolutions/IndicoIo-node",
+  "author": {
+    "name": "Joseph Núñez <toctochello@gmail.com>",
+    "email": "toctochello@gmail.com"
+  },
+  "contributors": [],
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/IndicoDataSolutions/IndicoIo-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IndicoDataSolutions/IndicoIo-node/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/IndicoDataSolutions/IndicoIo-node/blob/master/LICENSE"
+    }
+  ],
+  "main": "./lib/indico",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "request": "~2.36.0"
+  },
+  "devDependencies": {
+    "should": "~3.0.1",
+    "mocha": "~1.17.0"
+  },
+  "scripts": {
+    "test": "mocha test-all"
+  },
+  "js-flags": "--harmony"
+}
