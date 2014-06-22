@@ -44,6 +44,8 @@ indico
 /*
   test_face is an array in the same format as 
   numpy.linspace(0, 50, 48*48).reshape(48,48).tolist()
+  
+  You can find two examples of this data structure in ./test/data.json
 */
 var test_face = [...];
 
