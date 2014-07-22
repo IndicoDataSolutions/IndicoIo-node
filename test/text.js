@@ -16,20 +16,6 @@ describe('Text', function() {
     });
   });
   
-  describe('spam', function() {
-    it('should get the right response format', function(done) {
-      indico.spam('Buy a new car!!', function(err, res) {
-	if (err) {
-	  done(err);
-	  return;
-	}
-	
-	Object.keys(res).should.be(['Spam', 'Ham']);
-	done();
-      });
-    });
-  });
-  
   describe('posneg', function() {
     it('should get the right response format', function(done) {
       indico.sentiment('Really enjoyed the movie.', function(err, res) {

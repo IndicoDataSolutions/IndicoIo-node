@@ -37,7 +37,6 @@ function fn(err, res) {
 // Calls to the API are chainable
 indico
   .political('Guns don\'t kill people. People kill people.', fn)  // {Libertarian: 0.22934946808893228, Liberal: 0.2025395008382684, Green: 0.0, Conservative: 1.0}
-  .spam('Free cat!', fn) // {Ham: 0.0, Spam: 1.0}
   .sentiment('Worst movie ever.', fn) // {Sentiment: 0.07062467665597527}
   .sentiment('Really enjoyed the movie.'); // {Sentiment: 0.8105182526856075}
 
