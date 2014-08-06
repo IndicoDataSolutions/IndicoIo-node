@@ -1,0 +1,1 @@
+v0.1.3, Wed Aug 6 -- Added Changelog, also changed all instances of snake case to camelcase
