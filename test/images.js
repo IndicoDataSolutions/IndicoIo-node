@@ -28,9 +28,9 @@ describe('Image', function() {
     });
   });
 
-  describe('facial_features', function() {
+  describe('facialFeatures', function() {
     it('should get the right response format', function(done) {
-      indico.facial_features(data[0], function(err, res) {
+      indico.facialFeatures(data[0], function(err, res) {
 	if (err) {
 	  done(err);
 	  return;
