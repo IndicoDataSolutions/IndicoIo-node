@@ -15,7 +15,7 @@ npm install indico.io
 Right now this wrapper supports the following apps:
 
 - Political Sentiment Analysis
-- Spam Detection
+- Language Detection
 - Positive/Negative Sentiment Analysis
 - Facial Emotion Recognition
 - Facial Feature Extraction
