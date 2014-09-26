@@ -1,17 +1,17 @@
-var indico = require('..');
+var indico = require('..').local;
 var should = require('chai').should() 
 
 describe('Text', function() {
   describe('political', function() {
     it('should get the right response format', function(done) {
       indico.political("Guns don't kill people, people kill people.", function(err, res) {
-    	if (err) {
-    	  done(err);
-    	  return;
-    	}
+      if (err) {
+        done(err);
+        return;
+      }
 
-    	Object.keys(res).should.have.length(4);
-    	done();
+      Object.keys(res).should.have.length(4);
+      done();
       });  
     });
   });
@@ -19,13 +19,13 @@ describe('Text', function() {
   describe('posneg', function() {
     it('should get the right response format', function(done) {
       indico.sentiment('Really enjoyed the movie.', function(err, res) {
-    	if (err) {
-    	  done(err);
-    	  return;
-    	}
-	
-    	Object.keys(res).should.have.length(1)
-    	done();
+      if (err) {
+        done(err);
+        return;
+      }
+  
+      Object.keys(res).should.have.length(1)
+      done();
       });
     });
   });
