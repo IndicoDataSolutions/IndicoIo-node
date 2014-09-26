@@ -22,7 +22,7 @@ Right now this wrapper supports the following apps:
 
 ### Using the library
 
-```js
+```javascript
 var indico = require('indico.io');
 
 function fn(err, res) {
@@ -52,6 +52,27 @@ var testFace = [...];
 indico
   .facialFeatures(testFace, fn) // [0.0, -0.02568680526917187, ... , 3.0342637531932777]
   .fer(testFace, fn); // {Angry: 0.08843749137458341, Sad: 0.39091163159204684, Neutral: 0.1947947999669361, Surprise: 0.03443785859010413, Fear: 0.17574534848440568, Happy: 0.11567286999192382}
+
+```
+
+###Local
+
+When using a local version of the api you must remember to import '.local', otherwise it functions the exact same as the remote api documented above.
+
+```javascript
+var indicoLocal = require('indico.io').local;
+
+function fn(err, res) {
+  if (err) {
+    console.log('err: ', err);
+    return;
+  }
+
+  console.log(res);
+}
+
+indicoLocal
+  .sentiment('Worst movie ever.', fn) // {Sentiment: 0.07062467665597527}
 
 ```
 
