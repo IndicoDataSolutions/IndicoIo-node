@@ -4,7 +4,7 @@ node_js:
 
 # Install packages
 install:
-  - npm install
+  - travis_retry npm install
 
 # Run test
 script:
