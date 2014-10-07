@@ -31,7 +31,8 @@
   },
   "devDependencies": {
     "should": "~3.0.1",
-    "mocha": "~1.17.0"
+    "mocha": "~1.17.0",
+    "chai": "1.9.1"
   },
   "scripts": {
     "test": "mocha test-all"
