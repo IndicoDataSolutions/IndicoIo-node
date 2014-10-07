@@ -4,7 +4,7 @@ node_js:
 
 # Install packages
 install:
-  - sudo npm install
+  - npm install
 
 # Run test
 script:
