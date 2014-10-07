@@ -1,8 +1,8 @@
-var indico = require('..')
+var indico = require('..').local
   , data = require('./data.json');
 
 describe('Image', function() {
-  describe('fer', function() {
+  describe('fer (local)', function() {
     it('should get the right response format', function(done) {
       indico.fer(data[0], function(err, res) {
 		if (err) {
@@ -28,7 +28,7 @@ describe('Image', function() {
     });
   });
 
-  describe('facialFeatures', function() {
+  describe('facialFeatures (local)', function() {
     it('should get the right response format', function(done) {
       indico.facialFeatures(data[0], function(err, res) {
 		if (err) {
@@ -42,14 +42,14 @@ describe('Image', function() {
     });
   });
 
-  describe('imageFeatures', function() {
+  describe('imageFeatures (local)', function() {
     it('should get the right response format', function(done) {
       indico.imageFeatures(data[0], function(err, res) {
 	    if (err) {
 	      done(err);
 	      return;
 	    }
-
+	 
 	    res.Features.should.have.length(2048);
 	    done();
 	  });
