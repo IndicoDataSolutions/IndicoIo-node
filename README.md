@@ -1,6 +1,6 @@
 # indico.io
 
-A Node.js wrapper for the Indico's API.
+A Node.js wrapper for the Indico API.
 
 ### Getting started 
 
