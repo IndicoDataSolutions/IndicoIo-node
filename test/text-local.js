@@ -1,10 +1,8 @@
 var indico = require('..').local;
-var should = require('chai').should() 
-
-console.log(indico)
+var should = require('chai').should();
 
 describe('Text', function() {
-  describe('political (local)', function() {
+  describe('political', function() {
     it('should get the right response format', function(done) {
       indico.political("Guns don't kill people, people kill people.", function(err, res) {
       if (err) {
@@ -18,7 +16,7 @@ describe('Text', function() {
     });
   });
   
-  describe('posneg (local)', function() {
+  describe('posneg', function() {
     it('should get the right response format', function(done) {
       indico.sentiment('Really enjoyed the movie.', function(err, res) {
       if (err) {
@@ -26,13 +24,13 @@ describe('Text', function() {
         return;
       }
   
-      Object.keys(res).should.have.length(1)
+      res.should.be > 0.5
       done();
       });
     });
   });
 
-  describe('language (local)', function() {
+  describe('language', function() {
     it('should get the right response format', function(done) {
       indico.language('Quis custodiet ipsos custodes', function(err, res) {
         if (err) {

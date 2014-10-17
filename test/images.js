@@ -1,5 +1,6 @@
 var indico = require('..')
-  , data = require('./data.json');
+  , data = require('./data.json')
+  , should = require('chai').should();
 
 describe('Image', function() {
   describe('fer', function() {
@@ -28,29 +29,29 @@ describe('Image', function() {
     });
   });
 
-  describe('facialFeatures', function() {
+  describe('facialfeatures', function() {
     it('should get the right response format', function(done) {
-      indico.facialFeatures(data[0], function(err, res) {
+      indico.facialfeatures(data[0], function(err, res) {
 		if (err) {
 		  done(err);
 		  return;
 		}
 	
-		res.response.should.have.length(48);
+		res.should.have.length(48);
 		done();
       });
     });
   });
 
-  describe('imageFeatures', function() {
+  describe('imagefeatures', function() {
     it('should get the right response format', function(done) {
-      indico.imageFeatures(data[0], function(err, res) {
+      indico.imagefeatures(data[0], function(err, res) {
 	    if (err) {
 	      done(err);
 	      return;
 	    }
 
-	    res.Features.should.have.length(2048);
+	    res.should.have.length(2048);
 	    done();
 	  });
 	});

@@ -1,5 +1,5 @@
 var indico = require('..');
-var should = require('chai').should() 
+var should = require('chai').should();
 
 describe('Text', function() {
   describe('political', function() {
@@ -24,7 +24,7 @@ describe('Text', function() {
     	  return;
     	}
 	
-    	Object.keys(res).should.have.length(1)
+    	res.should.be > 0.5
     	done();
       });
     });
