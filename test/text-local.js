@@ -59,19 +59,4 @@ describe('Text', function() {
       });
     });
   });
-
-  describe('ner', function() {
-    it('should get the right response format', function(done) {
-      indico.ner('On Monday, president Barack Obama plans to ...', function(err, res) {
-        if (err) {
-          done(err);
-          return;
-        }
-
-        // number of named entities
-        Object.keys(res).should.have.length(1)
-        done();
-      });
-    });
-  });
 });
