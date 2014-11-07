@@ -54,7 +54,7 @@ describe('Text', function() {
         }
 
         // number of categories
-        Object.keys(res).should.have.length(4)
+        Object.keys(res).should.have.length(56)
         done();
       });
     });
