@@ -44,4 +44,19 @@ describe('Text', function() {
       });
     });
   });
+
+  describe('texttags', function() {
+    it('should get the right response format', function(done) {
+      indico.texttags('Really enjoyed the movie.', function(err, res) {
+        if (err) {
+          done(err);
+          return;
+        }
+
+        // number of categories
+        Object.keys(res).should.have.length(56)
+        done();
+      });
+    });
+  });
 });

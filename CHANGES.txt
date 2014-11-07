@@ -1,4 +1,5 @@
 v0.1.3, Wed Aug 6 -- Added Changelog, also changed all instances of snake case to camelcase
 v0.1.4, Wed Aug 6 -- Updated README to reflect changes in the political API
 v0.1.5, Fri Sept 26 --
-Updated to support calls to a local indico server.
+v0.1.6, Tue Oct 21 -- Updated to route calls to new remote server
+v0.1.7, Fri Nov 7 -- Updated to include new texttags API

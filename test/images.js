@@ -5,7 +5,7 @@ var indico = require('..')
 describe('Image', function() {
   describe('fer', function() {
     it('should get the right response format', function(done) {
-      indico.fer(data[0], function(err, res) {
+      indico.fer(data, function(err, res) {
 		if (err) {
 		  done(err);
 		  return;
@@ -17,7 +17,7 @@ describe('Image', function() {
     });
     
     it('should get the right response format', function(done) {
-      indico.fer(data[1], function(err, res) {
+      indico.fer(data, function(err, res) {
 		if (err) {
 		  done(err);
 		  return;
@@ -31,7 +31,7 @@ describe('Image', function() {
 
   describe('facialfeatures', function() {
     it('should get the right response format', function(done) {
-      indico.facialfeatures(data[0], function(err, res) {
+      indico.facialfeatures(data, function(err, res) {
 		if (err) {
 		  done(err);
 		  return;
@@ -45,7 +45,7 @@ describe('Image', function() {
 
   describe('imagefeatures', function() {
     it('should get the right response format', function(done) {
-      indico.imagefeatures(data[0], function(err, res) {
+      indico.imagefeatures(data, function(err, res) {
 	    if (err) {
 	      done(err);
 	      return;
