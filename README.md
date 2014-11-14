@@ -10,6 +10,10 @@ Install with [npm](http://npmjs.org/)
 npm install indico.io
 ```
 
+Documentation
+------------
+We now have [organized documentation](http://indico.readme.io/v1.0/docs)
+
 ### API
 
 Right now this wrapper supports the following apps:
