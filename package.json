@@ -35,7 +35,7 @@
     "chai": "1.9.1"
   },
   "scripts": {
-    "test": "mocha test-all"
+    "test": "mocha test"
   },
   "js-flags": "--harmony"
 }
