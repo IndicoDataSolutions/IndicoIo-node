@@ -23,8 +23,8 @@ describe('Text', function() {
     	  done(err);
     	  return;
     	}
-	
-    	res.should.be > 0.5
+
+      res.should.be.above(0.5);
     	done();
       });
     });
