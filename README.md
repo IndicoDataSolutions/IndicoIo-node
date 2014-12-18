@@ -81,6 +81,26 @@ indicoLocal
 
 ```
 
+###Batch
+
+For batch requests, simply pass your auth credentials in after your data, and ensure your data is wrapped in an array.
+
+```javascript
+var indico = require('indico.io')
+
+function fn(err, res) {
+  if (err) {
+    console.log('err: ', err);
+    return;
+  }
+
+  console.log(res):
+}
+
+auth = {"username": "*******", "password": "*******"}
+indico.batchSentiment(['Worst movie ever.', 'Best movie ever.'], auth, fn)
+// [ 0.07808824238341827, 0.813400530597089 ]
+
 ### License
 
 See the `LICENSE.md` file.
