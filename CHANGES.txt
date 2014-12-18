@@ -5,3 +5,4 @@ v0.1.6, Tue Oct 21 -- Updated to route calls to new remote server
 v0.1.7, Fri Nov 7 -- Updated to include new texttags API
 v0.1.9, Fri Nov 7 -- Readme update
 v0.1.10, Wed Nov 26 -- Batch support
+v0.1.11, Thu Dec 19 -- Batch authorization 

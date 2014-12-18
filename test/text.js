@@ -45,9 +45,9 @@ describe('Text', function() {
     });
   });
 
-  describe('texttags', function() {
+  describe('textTags', function() {
     it('should get the right response format', function(done) {
-      indico.texttags('Really enjoyed the movie.', function(err, res) {
+      indico.textTags('Really enjoyed the movie.', function(err, res) {
         if (err) {
           done(err);
           return;
