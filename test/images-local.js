@@ -1,4 +1,4 @@
-var indico = require('..')
+var indico = require('..').local
   , data = require('./data.json')
   , should = require('chai').should();
 
