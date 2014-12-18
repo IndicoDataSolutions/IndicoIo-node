@@ -15,6 +15,20 @@ describe('Text', function() {
       });  
     });
   });
+
+  describe('batch_political', function() {
+    it('should get the right response format', function(done) {
+      indico.batch_political(['test text'], function(err, res) {
+      if (err) {
+        done(err);
+        return;
+      }
+
+      res.should.have.length(1);
+      done();
+      });
+    });
+  });
   
   describe('posneg', function() {
     it('should get the right response format', function(done) {
