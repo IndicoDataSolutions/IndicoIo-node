@@ -60,27 +60,6 @@ indico
 
 ```
 
-###Local
-
-When using a local version of the api you must remember to import '.local', otherwise it functions the exact same as the remote api documented above.
-
-```javascript
-var indicoLocal = require('indico.io').local;
-
-function fn(err, res) {
-  if (err) {
-    console.log('err: ', err);
-    return;
-  }
-
-  console.log(res);
-}
-
-indicoLocal
-  .sentiment('Worst movie ever.', fn) // {Sentiment: 0.07062467665597527}
-
-```
-
 ###Batch
 
 For batch requests, simply pass your auth credentials in after your data, and ensure your data is wrapped in an array.
