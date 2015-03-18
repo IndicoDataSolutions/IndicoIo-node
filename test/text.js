@@ -1,4 +1,5 @@
 var indico = require('..');
+var settings = require('../lib/settings.js')
 var should = require('chai').should();
 
 describe('Text', function() {
@@ -64,6 +65,12 @@ describe('Text', function() {
 describe('BatchText', function() {
   describe('batch political', function() {
     it('should get the right response format', function(done) {
+
+      if (settings.auth === false) {
+        // skip test -- indico auth keys are not available
+        done();
+      }
+
       var examples = [
         "Guns don't kill people, people kill people.",
         "Steps are being taken to address inflation."
@@ -83,6 +90,12 @@ describe('BatchText', function() {
   
   describe('batch sentiment', function() {
     it('should get the right response format', function(done) {
+
+      if (settings.auth === false) {
+        // skip test -- indico auth keys are not available
+        done();
+      }
+
       var examples = [
         'Really enjoyed the movie.',
         'Worst day ever.'
@@ -102,6 +115,12 @@ describe('BatchText', function() {
 
   describe('batch language', function() {
     it('should get the right response format', function(done) {
+
+      if (settings.auth === false) {
+        // skip test -- indico auth keys are not available
+        done();
+      }
+
       var examples = [
         'Quis custodiet ipsos custodes',
         'Clearly an english sentence'
@@ -122,6 +141,12 @@ describe('BatchText', function() {
 
   describe('batch textTags', function() {
     it('should get the right response format', function(done) {
+
+      if (settings.auth === false) {
+        // skip test -- indico auth keys are not available
+        done();
+      }
+
       var examples = [
         'Really enjoyed the movie.',
         'Not looking forward to rain tomorrow'
