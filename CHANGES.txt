@@ -6,3 +6,4 @@ v0.1.7, Fri Nov 7 -- Updated to include new texttags API
 v0.1.9, Fri Nov 7 -- Readme update
 v0.1.10, Wed Nov 26 -- Batch support
 v0.1.11, Thu Dec 19 -- Batch authorization 
+v0.2.0, Wed March 18 -- Private cloud support and auth configuration
