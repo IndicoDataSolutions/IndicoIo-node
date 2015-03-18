@@ -60,3 +60,83 @@ describe('Text', function() {
     });
   });
 });
+
+describe('BatchText', function() {
+  describe('batch political', function() {
+    it('should get the right response format', function(done) {
+      var examples = [
+        "Guns don't kill people, people kill people.",
+        "Steps are being taken to address inflation."
+      ];
+      indico.batchPolitical(examples, function(err, res) {
+      if (err) {
+        done(err);
+        return;
+      }
+
+      res.should.have.length(examples.length);
+      Object.keys(res[0]).should.have.length(4);
+      done();
+      });  
+    });
+  });
+  
+  describe('batch sentiment', function() {
+    it('should get the right response format', function(done) {
+      var examples = [
+        'Really enjoyed the movie.',
+        'Worst day ever.'
+      ];
+      indico.batchSentiment(examples, function(err, res) {
+      if (err) {
+        done(err);
+        return;
+      }
+
+      res.should.have.length(examples.length);
+      res[0].should.be.above(0.5);
+      done();
+      });
+    });
+  });
+
+  describe('batch language', function() {
+    it('should get the right response format', function(done) {
+      var examples = [
+        'Quis custodiet ipsos custodes',
+        'Clearly an english sentence'
+      ];
+      indico.batchLanguage(examples, function(err, res) {
+        if (err) {
+          done(err);
+          return;
+        }
+
+        // number of languages
+        res.should.have.length(examples.length);
+        Object.keys(res[0]).should.have.length(33);
+        done();
+      });
+    });
+  });
+
+  describe('batch textTags', function() {
+    it('should get the right response format', function(done) {
+      var examples = [
+        'Really enjoyed the movie.',
+        'Not looking forward to rain tomorrow'
+      ];
+
+      indico.batchTextTags(examples, function(err, res) {
+        if (err) {
+          done(err);
+          return;
+        }
+
+        res.should.have.length(examples.length);
+        Object.keys(res[0]).should.have.length(111);
+        done();
+      });
+    });
+  });
+});
