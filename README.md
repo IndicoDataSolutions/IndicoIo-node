@@ -62,7 +62,8 @@ indico
 
 ###Batch
 
-For batch requests, simply pass your auth credentials in after your data, and ensure your data is wrapped in an array.
+For batch requests, simply pass your auth credentials in after your data, and ensure your data is wrapped in an array.  If you'd like to use our batch API interface, please check out the [pricing page](https://indico.io/pricing) on our website to find the right plan for you.
+
 
 ```javascript
 var indico = require('indico.io')
@@ -79,6 +80,50 @@ function fn(err, res) {
 auth = {"username": "*******", "password": "*******"}
 indico.batchSentiment(['Worst movie ever.', 'Best movie ever.'], auth, fn)
 // [ 0.07808824238341827, 0.813400530597089 ]
+```
+
+Authentication credentials can also be set as the environment variables `$INDICO_USERNAME` and `$INDICO_PASSWORD` or as `username` and `password` in the indicorc file.
+
+Private cloud API Access
+------------------------
+
+If you're looking to use indico's API for high throughput applications, email contact@indico.io and ask about our private cloud option.
+
+```javascript
+indico.sentiment("Text to analyze", cloud="example", auth=("example@example.com", "********"))
+```
+
+The `cloud` parameter redirects API calls to your private cloud hosted at `[cloud].indico.domains` 
+
+Private cloud subdomains can also be set as the environment variable `$INDICO_CLOUD` or as `cloud` in the indicorc file.
+
+Configuration
+------------------------
+
+IndicoIo-node will search ./.indicorc and $HOME/.indicorc for the optional configuration file. Values in the local configuration file (./.indicorc) take precedence over those found in a global configuration file ($HOME/.indicorc). The indicorc file can be used to set an authentication username and password or a private cloud subdomain, so these arguments don't need to be specified for every API call. All sections are optional.
+
+Here is an example of a valid indicorc file:
+
+
+```
+[auth]
+username = test@example.com
+password = secret
+
+[private_cloud]
+cloud = example
+```
+
+Environment variables take precedence over any configuration found in the indicorc file.
+The following environment variables are valid:
+
+```
+$INDICO_USERNAME
+$INDICO_PASSWORD
+$INDICO_CLOUD
+```
+
+ Finally, any values explicitly passed in to an API call will override configuration options set in the indicorc file or in an environment variable.
 
 ### License
 
