@@ -62,7 +62,7 @@ indico
 
 ###Batch
 
-For batch requests, simply pass your auth credentials in after your data, and ensure your data is wrapped in an array.  If you'd like to use our batch API interface, please check out the [pricing page](https://indico.io/pricing) on our website to find the right plan for you.
+For batch requests, simply pass your api key credentials in after your data, and ensure your data is wrapped in an array.  If you'd like to use our batch API interface, please check out the [pricing page](https://indico.io/pricing) on our website to find the right plan for you.
 
 
 ```javascript
@@ -77,12 +77,12 @@ function fn(err, res) {
   console.log(res):
 }
 
-auth = {"username": "*******", "password": "*******"}
+config = {"api_key": "*******"}
 indico.batchSentiment(['Worst movie ever.', 'Best movie ever.'], auth, fn)
 // [ 0.07808824238341827, 0.813400530597089 ]
 ```
 
-Authentication credentials can also be set as the environment variables `$INDICO_USERNAME` and `$INDICO_PASSWORD` or as `username` and `password` in the indicorc file.
+API key credentials can also be set as the environment variable `$INDICO_API_KEY` or as `api_key` in the indicorc file.
 
 Private cloud API Access
 ------------------------
@@ -90,7 +90,7 @@ Private cloud API Access
 If you're looking to use indico's API for high throughput applications, email contact@indico.io and ask about our private cloud option.
 
 ```javascript
-indico.sentiment("Text to analyze", cloud="example", auth=("example@example.com", "********"))
+indico.sentiment("Text to analyze", config={'api_key': '*********', 'cloud':'example'})
 ```
 
 The `cloud` parameter redirects API calls to your private cloud hosted at `[cloud].indico.domains` 
@@ -107,8 +107,7 @@ Here is an example of a valid indicorc file:
 
 ```
 [auth]
-username = test@example.com
-password = secret
+api_key = *************
 
 [private_cloud]
 cloud = example
@@ -118,8 +117,7 @@ Environment variables take precedence over any configuration found in the indico
 The following environment variables are valid:
 
 ```
-$INDICO_USERNAME
-$INDICO_PASSWORD
+$INDICO_API_KEY
 $INDICO_CLOUD
 ```
 
