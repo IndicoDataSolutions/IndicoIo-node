@@ -8,61 +8,51 @@ var indico = require('..')
 describe('Authentication', function() {
   describe('Direct config', function() {
     it('Should load configuration from a configuration file', function(done) {
-      var username = "username_argument";
-      var password = "password_argument";
+      var apiKeyArg = "api_key_argument";
       var config = {
-        'username': username,
-        'password': password
+        'api_key': apiKeyArg,
       };
 
       // directly pass in arguments
-      var auth = settings.auth(config);
+      var apiKey = settings.apiKey(config);
 
-      auth.username.should.equal(username);
-      auth.password.should.equal(password);
+      apiKey.should.equal(apiKeyArg);
       done();
     });
   });
   describe('Username and Password', function() {
     it('Should load configuration from environment variables', function(done) {
-      var username = "username_env_variable";
-      var password = "password_env_variable";
+      var envApiKey = "api_key_env_variable";
 
       // set environment variables
-      process.env.INDICO_USERNAME = username;
-      process.env.INDICO_PASSWORD = password;
+      process.env.INDICO_API_KEY = envApiKey;
       var config = {};
 
       // read from environment variables
-      var auth = settings.auth(config);
+      var apiKey = settings.apiKey(config);
 
-      auth.username.should.equal(username);
-      auth.password.should.equal(password);
+      apiKey.should.equal(envApiKey)
       done();
     });
   });
   describe('Username and Password', function() {
     it('Should load configuration from config file', function(done) {
-      var username = "username_config_file_var";
-      var password = "password_config_file_var";
-
+      var apiKeyConfigFile = "api_key_config_file_var";
+ 
       // ensure process does not take precedence
-      delete process.env.INDICO_USERNAME;
-      delete process.env.INDICO_PASSWORD;
+      delete process.env.INDICO_API_KEY;
 
       config = {};
 
       // mock result of indicorc
       var configFile = {
         'auth': {
-            'username': username,
-            'password': password
+          'api_key': apiKeyConfigFile
         }
       };
 
-      var auth = settings.auth(config, configFile);
-      auth.username.should.equal(username);
-      auth.password.should.equal(password);
+      var apiKey = settings.apiKey(config, configFile);
+      apiKey.should.equal(apiKeyConfigFile);
       done();
     });
   });
