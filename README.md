@@ -62,7 +62,7 @@ indico
 
 ###Batch
 
-For batch requests, simply pass your api key credentials in after your data, and ensure your data is wrapped in an array.  If you'd like to use our batch API interface, please check out the [pricing page](https://indico.io/pricing) on our website to find the right plan for you.
+For batch requests, simply pass your api key credentials in after your data, and ensure your data is wrapped in an array. 
 
 
 ```javascript
