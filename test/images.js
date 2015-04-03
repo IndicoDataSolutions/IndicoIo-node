@@ -51,7 +51,7 @@ describe('Batch Image', function() {
   describe('batch fer', function() {
     it('should get the right response format', function(done) {
 
-      if (settings.auth === false) {
+      if (settings.apiKey === false) {
         // skip test -- indico auth keys are not available
         done();
       }
@@ -73,7 +73,7 @@ describe('Batch Image', function() {
   describe('batch facialFeatures', function() {
     it('should get the right response format', function(done) {
 
-      if (settings.auth === false) {
+      if (settings.apiKey === false) {
         // skip test -- indico auth keys are not available
         done();
       }
@@ -95,7 +95,7 @@ describe('Batch Image', function() {
   describe('batch imageFeatures', function() {
     it('should get the right response format', function(done) {
 
-      if (settings.auth === false) {
+      if (settings.apiKey === false) {
         // skip test -- indico auth keys are not available
         done();
       }

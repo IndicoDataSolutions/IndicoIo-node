@@ -5,6 +5,11 @@ var should = require('chai').should();
 describe('Text', function() {
   describe('political', function() {
     it('should get the right response format', function(done) {
+      if (settings.apiKey === false) {
+        // skip test -- indico auth keys are not available
+        done();
+      }
+
       indico.political("Guns don't kill people, people kill people.", function(err, res) {
     	if (err) {
     	  done(err);
@@ -19,6 +24,11 @@ describe('Text', function() {
   
   describe('sentiment', function() {
     it('should get the right response format', function(done) {
+      if (settings.apiKey === false) {
+        // skip test -- indico auth keys are not available
+        done();
+      }
+
       indico.sentiment('Really enjoyed the movie.', function(err, res) {
     	if (err) {
     	  done(err);
@@ -33,6 +43,11 @@ describe('Text', function() {
 
   describe('language', function() {
     it('should get the right response format', function(done) {
+      if (settings.apiKey === false) {
+        // skip test -- indico auth keys are not available
+        done();
+      }
+
       indico.language('Quis custodiet ipsos custodes', function(err, res) {
         if (err) {
           done(err);
@@ -48,6 +63,11 @@ describe('Text', function() {
 
   describe('textTags', function() {
     it('should get the right response format', function(done) {
+      if (settings.apiKey === false) {
+        // skip test -- indico auth keys are not available
+        done();
+      }
+
       indico.textTags('Really enjoyed the movie.', function(err, res) {
         if (err) {
           done(err);
@@ -64,6 +84,11 @@ describe('Text', function() {
 
 describe('BatchText', function() {
   describe('batch political', function() {
+    if (settings.apiKey === false) {
+      // skip test -- indico auth keys are not available
+      done();
+    }
+
     it('should get the right response format', function(done) {
 
       if (settings.auth === false) {
@@ -89,6 +114,11 @@ describe('BatchText', function() {
   });
   
   describe('batch sentiment', function() {
+    if (settings.apiKey === false) {
+      // skip test -- indico auth keys are not available
+      done();
+    }
+
     it('should get the right response format', function(done) {
 
       if (settings.auth === false) {
@@ -114,6 +144,11 @@ describe('BatchText', function() {
   });
 
   describe('batch language', function() {
+    if (settings.apiKey === false) {
+      // skip test -- indico auth keys are not available
+      done();
+    }
+
     it('should get the right response format', function(done) {
 
       if (settings.auth === false) {
@@ -140,6 +175,11 @@ describe('BatchText', function() {
   });
 
   describe('batch textTags', function() {
+    if (settings.apiKey === false) {
+      // skip test -- indico auth keys are not available
+      done();
+    }
+
     it('should get the right response format', function(done) {
 
       if (settings.auth === false) {
