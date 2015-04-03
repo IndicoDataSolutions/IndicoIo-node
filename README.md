@@ -66,7 +66,6 @@ indico
 
 Batch requests allow you to process larger volumes of data more efficiently by grouping many examples into a single request.  Simply call the batch method that corresponds to the API you'd like to use, and ensure your data is wrapped in an array.
 
-
 ```javascript
 var indico = require('indico.io')
 
@@ -79,12 +78,10 @@ function fn(err, res) {
   console.log(res):
 }
 
-auth = {"api_key": "*************"}
-indico.batchSentiment(['Worst movie ever.', 'Best movie ever.'], auth, fn)
+indico.batchSentiment(['Worst movie ever.', 'Best movie ever.'], fn)
 // [ 0.07808824238341827, 0.813400530597089 ]
 ```
 
-An indico API key can also be set as the environment variables `$INDICO_API_KEY` or as `api_key` in the indicorc file.
 
 Private cloud API Access
 ------------------------
@@ -92,7 +89,7 @@ Private cloud API Access
 If you're looking to use indico's API for high throughput applications, email contact@indico.io and ask about our private cloud option.
 
 ```javascript
-indico.sentiment("Text to analyze", {'api_key': '********', 'cloud': 'subdomain'}, callback)
+indico.sentiment("Text to analyze", {'api_key': '*********', 'cloud':'example'})
 ```
 
 The `cloud` parameter redirects API calls to your private cloud hosted at `[cloud].indico.domains` 
