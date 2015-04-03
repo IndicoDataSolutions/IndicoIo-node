@@ -23,6 +23,7 @@ describe('Authentication', function() {
   describe('Username and Password', function() {
     it('Should load configuration from environment variables', function(done) {
       var envApiKey = "api_key_env_variable";
+      var savedKey = process.env.INDICO_API_KEY;
 
       // set environment variables
       process.env.INDICO_API_KEY = envApiKey;
@@ -32,6 +33,7 @@ describe('Authentication', function() {
       var apiKey = settings.apiKey(config);
 
       apiKey.should.equal(envApiKey)
+      process.env.INDICO_API_KEY = savedKey;
       done();
     });
   });
@@ -40,6 +42,7 @@ describe('Authentication', function() {
       var apiKeyConfigFile = "api_key_config_file_var";
  
       // ensure process does not take precedence
+      var savedKey = process.env.INDICO_API_KEY;
       delete process.env.INDICO_API_KEY;
 
       config = {};
@@ -53,6 +56,7 @@ describe('Authentication', function() {
 
       var apiKey = settings.apiKey(config, configFile);
       apiKey.should.equal(apiKeyConfigFile);
+      process.env.INDICO_API_KEY = savedKey;
       done();
     });
   });
@@ -78,6 +82,7 @@ describe('Private Cloud', function() {
       var privateCloud = "private_cloud_env_variable";
 
       // set environment variables
+      var savedCloud = process.env.INDICO_CLOUD;
       process.env.INDICO_CLOUD = privateCloud;
       var config = {};
 
@@ -85,6 +90,7 @@ describe('Private Cloud', function() {
       var cloud = settings.privateCloud(config);
 
       cloud.should.equal(privateCloud);
+      process.env.INDICO_CLOUD = savedCloud;
       done();
     });
   });
