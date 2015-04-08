@@ -99,14 +99,15 @@ describe('Text', function() {
 
 describe('BatchText', function() {
   describe('batch political', function() {
-    if (settings.apiKey === false) {
+    if (settings.apiKey() === false) {
       // skip test -- indico auth keys are not available
-      done();
+      console.warn('Api keys are now required\nhttp://docs.indico.io/v2.0/docs/api-keys')
+      return;
     }
 
     it('should get the right response format', function(done) {
 
-      if (settings.auth() === false) {
+      if (settings.apiKey() === false) {
         // skip test -- indico auth keys are not available
         done();
         return;
@@ -135,12 +136,13 @@ describe('BatchText', function() {
   describe('batch sentiment', function() {
     if (settings.apiKey === false) {
       // skip test -- indico auth keys are not available
-      done();
+      console.warn('Api keys are now required\nhttp://docs.indico.io/v2.0/docs/api-keys')
+      return;
     }
 
     it('should get the right response format', function(done) {
 
-      if (settings.auth() === false) {
+      if (settings.apiKey() === false) {
         // skip test -- indico auth keys are not available
         done();
         return;
@@ -167,14 +169,15 @@ describe('BatchText', function() {
   });
 
   describe('batch language', function() {
-    if (settings.apiKey === false) {
+    if (settings.apiKey() === false) {
       // skip test -- indico auth keys are not available
-      done();
+      console.warn('Api keys are now required\nhttp://docs.indico.io/v2.0/docs/api-keys')
+      return;
     }
 
     it('should get the right response format', function(done) {
 
-      if (settings.auth() === false) {
+      if (settings.apiKey() === false) {
         // skip test -- indico auth keys are not available
         done();
         return;
@@ -202,14 +205,15 @@ describe('BatchText', function() {
   });
 
   describe('batch textTags', function() {
-    if (settings.apiKey === false) {
+    if (settings.apiKey() === false) {
       // skip test -- indico auth keys are not available
-      done();
+      console.warn('Api keys are now required\nhttp://docs.indico.io/v2.0/docs/api-keys')
+      return;
     }
 
     it('should get the right response format', function(done) {
 
-      if (settings.auth() === false) {
+      if (settings.apiKey() === false) {
         // skip test -- indico auth keys are not available
         done();
         return;
