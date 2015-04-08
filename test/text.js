@@ -3,14 +3,13 @@ var settings = require('../lib/settings.js')
 var should = require('chai').should();
 
 describe('Text', function() {
+  if (settings.apiKey() === false) {
+    // skip test -- indico auth keys are not available
+    console.warn('Api keys are now required. Skipping some tests.\nhttp://docs.indico.io/v2.0/docs/api-keys')
+    return;
+  }
   describe('political', function() {
     it('should get the right response format', function(done) {
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
-
 
       indico.political("Guns don't kill people, people kill people.")
         .then(function(res) {
@@ -19,7 +18,6 @@ describe('Text', function() {
           done();
         })
         .catch(function(err){
-
         	  done(err);
         	  return;
         });
@@ -28,34 +26,22 @@ describe('Text', function() {
 
   describe('sentiment', function() {
     it('should get the right response format', function(done) {
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
-
       indico.sentiment('Really enjoyed the movie.')
-      .then(function(res) {
+        .then(function(res) {
 
-        res.should.be.above(0.5);
-        done();
-      })
-      .catch(function(err){
+          res.should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
 
-    	  done(err);
-    	  return;
-      });
+      	  done(err);
+      	  return;
+        });
     });
   });
 
   describe('language', function() {
     it('should get the right response format', function(done) {
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
-
       indico.language('Quis custodiet ipsos custodes')
         .then(function(res) {
 
@@ -74,12 +60,6 @@ describe('Text', function() {
 
   describe('textTags', function() {
     it('should get the right response format', function(done) {
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
-
       indico.textTags('Really enjoyed the movie.')
         .then(function(res){
 
@@ -98,20 +78,14 @@ describe('Text', function() {
 });
 
 describe('BatchText', function() {
+  if (settings.apiKey() === false) {
+    // skip test -- indico auth keys are not available
+    console.warn('Api keys are now required. Skipping some tests.\nhttp://docs.indico.io/v2.0/docs/api-keys')
+    return;
+  }
   describe('batch political', function() {
-    if (settings.apiKey() === false) {
-      // skip test -- indico auth keys are not available
-      console.warn('Api keys are now required\nhttp://docs.indico.io/v2.0/docs/api-keys')
-      return;
-    }
 
     it('should get the right response format', function(done) {
-
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
 
       var examples = [
         "Guns don't kill people, people kill people.",
@@ -134,19 +108,7 @@ describe('BatchText', function() {
   });
 
   describe('batch sentiment', function() {
-    if (settings.apiKey === false) {
-      // skip test -- indico auth keys are not available
-      console.warn('Api keys are now required\nhttp://docs.indico.io/v2.0/docs/api-keys')
-      return;
-    }
-
     it('should get the right response format', function(done) {
-
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
 
       var examples = [
         'Really enjoyed the movie.',
@@ -169,19 +131,7 @@ describe('BatchText', function() {
   });
 
   describe('batch language', function() {
-    if (settings.apiKey() === false) {
-      // skip test -- indico auth keys are not available
-      console.warn('Api keys are now required\nhttp://docs.indico.io/v2.0/docs/api-keys')
-      return;
-    }
-
     it('should get the right response format', function(done) {
-
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
 
       var examples = [
         'Quis custodiet ipsos custodes',
@@ -205,19 +155,7 @@ describe('BatchText', function() {
   });
 
   describe('batch textTags', function() {
-    if (settings.apiKey() === false) {
-      // skip test -- indico auth keys are not available
-      console.warn('Api keys are now required\nhttp://docs.indico.io/v2.0/docs/api-keys')
-      return;
-    }
-
     it('should get the right response format', function(done) {
-
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
 
       var examples = [
         'Really enjoyed the movie.',

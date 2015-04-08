@@ -4,6 +4,11 @@ var indico = require('..')
   , should = require('chai').should();
 
 describe('Image', function() {
+  if (settings.apiKey() === false) {
+    // skip test -- indico auth keys are not available
+    console.warn('Api keys are now required. Skipping some tests.\nhttp://docs.indico.io/v2.0/docs/api-keys')
+    return;
+  }
   describe('fer', function() {
     it('should get the right response format', function(done) {
       indico.fer(data)
@@ -56,14 +61,14 @@ describe('Image', function() {
 });
 
 describe('Batch Image', function() {
+  if (settings.apiKey() === false) {
+    // skip test -- indico auth keys are not available
+    console.warn('Api keys are now required. Skipping some tests.\nhttp://docs.indico.io/v2.0/docs/api-keys')
+    return;
+  }
   describe('batch fer', function() {
     it('should get the right response format', function(done) {
 
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
 
       var examples = [data, data];
       indico.batchFer(examples)
@@ -83,12 +88,6 @@ describe('Batch Image', function() {
   describe('batch facialFeatures', function() {
     it('should get the right response format', function(done) {
 
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
-
       var examples = [data, data];
       indico.batchFacialFeatures(examples)
         .then(function(res){
@@ -106,12 +105,6 @@ describe('Batch Image', function() {
 
   describe('batch imageFeatures', function() {
     it('should get the right response format', function(done) {
-
-      if (settings.apiKey() === false) {
-        // skip test -- indico auth keys are not available
-        done();
-        return;
-      }
 
       var examples = [data, data];
       indico.batchImageFeatures(examples)
