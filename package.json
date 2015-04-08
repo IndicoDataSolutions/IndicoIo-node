@@ -1,7 +1,7 @@
 {
   "name": "indico.io",
   "description": "A Node.js wrapper for the Indico’s API",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://github.com/IndicoDataSolutions/IndicoIo-node",
   "author": {
     "name": "Joseph Núñez <toctochello@gmail.com>",
@@ -29,8 +29,8 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
+    "bluebird": "^2.9.24",
     "config-ini": "^0.2.2",
-    "deasync": "0.0.10",
     "expand-tilde": "^1.2.0",
     "request": "~2.36.0"
   },
@@ -40,7 +40,7 @@
     "chai": "1.9.1"
   },
   "scripts": {
-    "test": "mocha test/*.js"
+    "test": "mocha test/*.js test/integration/*.js"
   },
   "js-flags": "--harmony"
 }
