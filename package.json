@@ -29,8 +29,8 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
+    "bluebird": "^2.9.24",
     "config-ini": "^0.2.2",
-    "deasync": "0.0.10",
     "expand-tilde": "^1.2.0",
     "request": "~2.36.0"
   },

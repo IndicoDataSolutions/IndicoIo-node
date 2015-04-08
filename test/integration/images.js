@@ -5,46 +5,55 @@ var indico = require('../..')
 describe('BatchImage', function () {
   describe('batchFer', function() {
     it('should get the right response format', function(done) {
-      indico.batchFer([data], function(err, res) {
-      if (err) {
-        done(err);
-        return;
-      }
+      indico.batchFer([data])
+        .then(function(res){
 
-      res.should.have.length(1);
-      Object.keys(res[0]).should.have.length(6);
-      done();
-      });  
+          res.should.have.length(1);
+          Object.keys(res[0]).should.have.length(6);
+          done();
+        })
+        .catch(function(err) {
+
+          done(err);
+          return;
+        })
+
     });
   });
 
   describe('batchFacialFeatures', function() {
     it('should get the right response format', function(done) {
-      indico.batchFacialFeatures([data], function(err, res) {
-      if (err) {
-        done(err);
-        return;
-      }
+      indico.batchFacialFeatures([data])
+        .then(function(res){
 
-      res.should.have.length(1);
-      Object.keys(res[0]).should.have.length(48);
-      done();
-      });  
+          res.should.have.length(1);
+          Object.keys(res[0]).should.have.length(48);
+          done();
+        })
+        .catch(function(err) {
+
+          done(err);
+          return;
+        })
+
     });
   });
 
   describe('batchImageFeatures', function() {
     it('should get the right response format', function(done) {
-      indico.batchImageFeatures([data], function(err, res) {
-      if (err) {
-        done(err);
-        return;
-      }
+      indico.batchImageFeatures([data])
+        .then(function(res){
 
-      res.should.have.length(1);
-      Object.keys(res[0]).should.have.length(2048);
-      done();
-      });  
+          res.should.have.length(1);
+          Object.keys(res[0]).should.have.length(2048);
+          done();
+        })
+        .catch(function(err) {
+
+          done(err);
+          return;
+        })
+
     });
   });
 });
