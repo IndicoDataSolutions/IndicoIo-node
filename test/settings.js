@@ -8,61 +8,55 @@ var indico = require('..')
 describe('Authentication', function() {
   describe('Direct config', function() {
     it('Should load configuration from a configuration file', function(done) {
-      var username = "username_argument";
-      var password = "password_argument";
+      var apiKeyArg = "api_key_argument";
       var config = {
-        'username': username,
-        'password': password
+        'api_key': apiKeyArg,
       };
 
       // directly pass in arguments
-      var auth = settings.auth(config);
+      var apiKey = settings.resolveApiKey(config);
 
-      auth.username.should.equal(username);
-      auth.password.should.equal(password);
+      apiKey.should.equal(apiKeyArg);
       done();
     });
   });
-  describe('Username and Password', function() {
+  describe('API Key', function() {
     it('Should load configuration from environment variables', function(done) {
-      var username = "username_env_variable";
-      var password = "password_env_variable";
+      var envApiKey = "api_key_env_variable";
+      var savedKey = process.env.INDICO_API_KEY;
 
       // set environment variables
-      process.env.INDICO_USERNAME = username;
-      process.env.INDICO_PASSWORD = password;
+      process.env.INDICO_API_KEY = envApiKey;
       var config = {};
 
       // read from environment variables
-      var auth = settings.auth(config);
+      var apiKey = settings.resolveApiKey(config);
 
-      auth.username.should.equal(username);
-      auth.password.should.equal(password);
+      apiKey.should.equal(envApiKey)
+      process.env.INDICO_API_KEY = savedKey;
       done();
     });
   });
-  describe('Username and Password', function() {
+  describe('API Key', function() {
     it('Should load configuration from config file', function(done) {
-      var username = "username_config_file_var";
-      var password = "password_config_file_var";
-
+      var apiKeyConfigFile = "api_key_config_file_var";
+ 
       // ensure process does not take precedence
-      delete process.env.INDICO_USERNAME;
-      delete process.env.INDICO_PASSWORD;
+      var savedKey = process.env.INDICO_API_KEY;
+      delete process.env.INDICO_API_KEY;
 
       config = {};
 
       // mock result of indicorc
       var configFile = {
         'auth': {
-            'username': username,
-            'password': password
+          'api_key': apiKeyConfigFile
         }
       };
 
-      var auth = settings.auth(config, configFile);
-      auth.username.should.equal(username);
-      auth.password.should.equal(password);
+      var apiKey = settings.resolveApiKey(config, false, configFile);
+      apiKey.should.equal(apiKeyConfigFile);
+      process.env.INDICO_API_KEY = savedKey;
       done();
     });
   });
@@ -77,28 +71,30 @@ describe('Private Cloud', function() {
       };
 
       // directly pass in arguments
-      var cloud = settings.privateCloud(config);
+      var cloud = settings.resolvePrivateCloud(config);
 
       cloud.should.equal(privateCloud);
       done();
     });
   });
-  describe('Username and Password', function() {
+  describe('API Key', function() {
     it('Should load configuration from environment variables', function(done) {
       var privateCloud = "private_cloud_env_variable";
 
       // set environment variables
+      var savedCloud = process.env.INDICO_CLOUD;
       process.env.INDICO_CLOUD = privateCloud;
       var config = {};
 
       // read from environment variables
-      var cloud = settings.privateCloud(config);
+      var cloud = settings.resolvePrivateCloud(config);
 
       cloud.should.equal(privateCloud);
+      process.env.INDICO_CLOUD = savedCloud;
       done();
     });
   });
-  describe('Username and Password', function() {
+  describe('Private Cloud', function() {
     it('Should load configuration from config file', function(done) {
       var privateCloud = "private_cloud_config_file";
 
@@ -110,12 +106,50 @@ describe('Private Cloud', function() {
       // mock result of indicorc
       var configFile = {
         'private_cloud': {
-            'cloud': privateCloud
+          'cloud': privateCloud
         }
       };
 
-      var cloud = settings.privateCloud(config, configFile);
+      var cloud = settings.resolvePrivateCloud(config, false, configFile);
       cloud.should.equal(privateCloud)
+      done();
+    });
+  });
+  describe('Private Cloud', function() {
+    it('Should assign proper priority to module variables for config', function(done) {
+      var privateCloud = "private_cloud_config_file";
+
+      config = {};
+
+      // mock result of indicorc
+      var configFile = {
+        'private_cloud': {
+          'cloud': privateCloud
+        }
+      };
+
+      var moduleConfig = 'module_private_cloud';
+      var cloud = settings.resolvePrivateCloud(config, moduleConfig, configFile);
+      cloud.should.equal(moduleConfig);
+      done();
+    });
+  });
+  describe('API Key', function() {
+    it('Should assign proper priority to module variables for config', function(done) {
+      var apiKey = "api_key_config_file";
+
+      config = {};
+
+      // mock result of indicorc
+      var configFile = {
+        'auth': {
+          'api_key': apiKey
+        }
+      };
+
+      var moduleConfig = 'module_api_key';
+      var cloud = settings.resolvePrivateCloud(config, moduleConfig, configFile);
+      cloud.should.equal(moduleConfig);
       done();
     });
   });
