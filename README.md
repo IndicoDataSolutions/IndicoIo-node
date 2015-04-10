@@ -32,6 +32,9 @@ Detailed documentation and further code examples are available at [indico.reame.
 ```javascript
 var indico = require('indico.io');
 
+// Be sure to set your API key
+indico.apiKey = "YOUR_API_KEY";
+
 // Calls to the API return promises
 
 indico
@@ -103,16 +106,7 @@ indico
 Batch requests allow you to process larger volumes of data more efficiently by grouping many examples into a single request.  Simply call the batch method that corresponds to the API you'd like to use, and ensure your data is wrapped in an array.
 
 ```javascript
-var indico = require('indico.io')
-
-function fn(err, res) {
-  if (err) {
-    console.log('err: ', err);
-    return;
-  }
-
-  console.log(res):
-}
+var indico = require('indico.io')f
 
 indico
   .batchSentiment(['Worst movie ever.', 'Best movie ever.'])
