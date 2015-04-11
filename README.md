@@ -106,7 +106,7 @@ indico
 Batch requests allow you to process larger volumes of data more efficiently by grouping many examples into a single request.  Simply call the batch method that corresponds to the API you'd like to use, and ensure your data is wrapped in an array.
 
 ```javascript
-var indico = require('indico.io')f
+var indico = require('indico.io')
 
 indico
   .batchSentiment(['Worst movie ever.', 'Best movie ever.'])
