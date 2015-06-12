@@ -41,6 +41,22 @@ describe('Text', function() {
     });
   });
 
+  describe('sentimentHQ', function() {
+    it('should get the right response format', function(done) {
+      indico.sentiment('Really enjoyed the movie.')
+        .then(function(res) {
+
+          res.should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
   describe('language', function() {
     it('should get the right response format', function(done) {
       indico.language('Quis custodiet ipsos custodes')
