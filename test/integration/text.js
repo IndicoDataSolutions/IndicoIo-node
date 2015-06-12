@@ -147,6 +147,29 @@ describe('BatchText', function() {
     });
   });
 
+  describe('batchSentimentHQ', function() {
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        'Really enjoyed the movie.',
+        'Worst day ever.'
+      ];
+
+      indico.batchSentiment(examples)
+        .then(function(res){
+
+          res.should.have.length(examples.length);
+          res[0].should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
   describe('batchLanguage', function() {
     it('should get the right response format', function(done) {
 
