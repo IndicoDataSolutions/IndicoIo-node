@@ -41,6 +41,22 @@ describe('Text', function() {
     });
   });
 
+  describe('sentimentHQ', function() {
+    it('should get the right response format', function(done) {
+      indico.sentiment('Really enjoyed the movie.')
+        .then(function(res) {
+
+          res.should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
   describe('language', function() {
     it('should get the right response format', function(done) {
       indico.language('Quis custodiet ipsos custodes')
@@ -109,6 +125,29 @@ describe('BatchText', function() {
   });
 
   describe('batchSentiment', function() {
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        'Really enjoyed the movie.',
+        'Worst day ever.'
+      ];
+
+      indico.batchSentiment(examples)
+        .then(function(res){
+
+          res.should.have.length(examples.length);
+          res[0].should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchSentimentHQ', function() {
     it('should get the right response format', function(done) {
 
       var examples = [
