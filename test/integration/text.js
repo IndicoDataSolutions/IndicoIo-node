@@ -76,6 +76,23 @@ describe('Text', function() {
 
     });
   });
+
+  describe('Keyword Arguments Function', function() {
+    it('Keyword arguments should function when passed into config', function(done) {
+      indico.textTags('Really enjoyed the movie.', {'top_n': 5})
+        .then(function(res){
+
+          // number of categories
+          Object.keys(res).should.have.length(5)
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+      })
+    });
+  });
 });
 
 describe('BatchText', function() {

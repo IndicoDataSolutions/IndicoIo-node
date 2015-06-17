@@ -10,7 +10,7 @@ describe('Authentication', function() {
     it('Should load configuration from a configuration file', function(done) {
       var apiKeyArg = "api_key_argument";
       var config = {
-        'api_key': apiKeyArg,
+        'apiKey': apiKeyArg,
       };
 
       // directly pass in arguments
