@@ -2,6 +2,8 @@ var indico = require('../..')
   , settings = require('../../lib/settings.js')
   , data = require('../data.json')
   , should = require('chai').should()
+  , image = require('../../lib/image.js')
+  , lwip = require('lwip')
   ;
 
 describe('BatchImage', function () {
@@ -112,6 +114,27 @@ describe('Image', function() {
 
           res.should.have.length(2048);
           done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        })
+    });
+  });
+
+  describe('imageResizing', function() {
+    it('should get the right sized image in b64', function(done) {
+      image.preprocess(data, 48, false)
+        .then(function(res){
+          lwip.open(new Buffer(res, 'base64'), 'png', function (err, image) {
+              if (err) {
+                  console.log(err);
+                  return;
+              }
+              image.width().should.equal(48)
+              done();
+          });
         })
         .catch(function(err){
 
