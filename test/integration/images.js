@@ -135,8 +135,9 @@ describe('Image', function() {
               image.width().should.equal(48)
               done();
           });
-        });
+      });
     });
+  });
     
   describe('predictImage', function() {
     it('should get the right response format', function(done) {
