@@ -4,8 +4,12 @@ var indico = require('../..')
   , should = require('chai').should()
   , image = require('../../lib/image.js')
   , lwip = require('lwip')
+  , fs = require('fs')
+  , path = require('path');
   ;
 
+ // Silence Warnings
+console.warn = function () {};
 describe('BatchImage', function () {
   if (settings.resolveApiKey() === false) {
     // skip test -- indico auth keys are not available
@@ -110,6 +114,40 @@ describe('Image', function() {
   describe('imageFeatures', function() {
     it('should get the right response format', function(done) {
       indico.imageFeatures(data)
+        .then(function(res){
+
+          res.should.have.length(2048);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        })
+    });
+  });
+
+  describe('base64', function() {
+    it('should get the right response format', function(done) {
+      var base64Str = fs.readFileSync(path.join(__dirname, '..', 'base64.txt'), { encoding: 'utf8' })
+      indico.imageFeatures(base64Str)
+        .then(function(res){
+
+          res.should.have.length(2048);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        })
+    });
+  });
+
+  describe('filepath', function() {
+    it('should get the right response format', function(done) {
+      var filePath = path.join(__dirname, '..', 'face1.png')
+      indico.imageFeatures(filePath)
         .then(function(res){
 
           res.should.have.length(2048);
