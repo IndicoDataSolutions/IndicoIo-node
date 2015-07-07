@@ -34,6 +34,24 @@ describe('BatchImage', function () {
     });
   });
 
+  describe('batchContentFiltering', function() {
+    it('should get the right response format', function(done) {
+      indico.batchContentFiltering([data])
+        .then(function(res){
+
+          res.should.have.length(1);
+          res[0].should.be.below(.5);
+          done();
+        })
+        .catch(function(err) {
+
+          done(err);
+          return;
+        })
+
+    });
+  });
+
   describe('batchFacialFeatures', function() {
     it('should get the right response format', function(done) {
       indico.batchFacialFeatures([data])
@@ -83,6 +101,23 @@ describe('Image', function() {
         .then(function(res){
 
           Object.keys(res).should.have.length(6);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        })
+
+    });
+  });
+
+  describe('contentFiltering', function() {
+    it('should get the right response format', function(done) {
+      indico.contentFiltering(data)
+        .then(function(res){
+
+          res.should.be.below(.5)
           done();
         })
         .catch(function(err){
