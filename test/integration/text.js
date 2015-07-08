@@ -195,4 +195,44 @@ describe('BatchText', function() {
 
     });
   });
+
+  describe('predictText', function() {
+    it('should get results from multiple text apis', function(done) {
+
+      var example = 'Really enjoyed the movie.';
+
+      indico.predictText(example, {'apis': ['sentiment', 'textTags']})
+        .then(function(res){
+          Object.keys(res).should.have.length(2);
+          done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
+
+    });
+  });
+
+  describe('batchPredictText', function() {
+    it('should get results from multiple text apis', function(done) {
+
+      var examples = [
+        'Really enjoyed the movie.',
+        'Not looking forward to rain tomorrow'
+      ];
+
+      indico.batchPredictText(examples, {'apis': ['sentiment', 'textTags']})
+        .then(function(res){
+          Object.keys(res).should.have.length(2);
+          res['sentiment'].should.have.length(2);
+          done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
+
+    });
+  });
 });

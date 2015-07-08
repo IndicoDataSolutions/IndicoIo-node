@@ -173,6 +173,33 @@ describe('Image', function() {
               image.width().should.equal(48)
               done();
           });
+      });
+    });
+  });
+    
+  describe('predictImage', function() {
+    it('should get the right response format', function(done) {
+      indico.predictImage(data, {'apis': ['imageFeatures', 'facialFeatures']})
+        .then(function(res){
+          Object.keys(res).should.have.length(2);
+          Object.keys(res['imageFeatures']).should.have.length(2048)
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        })
+    });
+  });
+
+  describe('batchPredictImage', function() {
+    it('should get the right response format', function(done) {
+      indico.batchPredictImage([data], {'apis': ['imageFeatures', 'facialFeatures']})
+        .then(function(res){
+          res['imageFeatures'].should.have.length(1)
+          res['imageFeatures'][0].should.have.length(2048)
+          done();
         })
         .catch(function(err){
 
