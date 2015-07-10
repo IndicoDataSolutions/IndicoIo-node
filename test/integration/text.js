@@ -14,7 +14,6 @@ describe('Text', function() {
 
       indico.political("Guns don't kill people, people kill people.")
         .then(function(res) {
-
           Object.keys(res).should.have.length(4);
           done();
         })
@@ -28,6 +27,20 @@ describe('Text', function() {
   describe('sentiment', function() {
     it('should get the right response format', function(done) {
       indico.sentiment('Really enjoyed the movie.')
+        .then(function(res) {
+          res.should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('sentimentHQ', function() {
+    it('should get the right response format', function(done) {
+      indico.sentimentHQ('Really enjoyed the movie.')
         .then(function(res) {
 
           res.should.be.above(0.5);
@@ -45,17 +58,14 @@ describe('Text', function() {
     it('should get the right response format', function(done) {
       indico.language('Quis custodiet ipsos custodes')
         .then(function(res) {
-
           // number of languages
           Object.keys(res).should.have.length(33)
           done();
         })
         .catch(function(err){
-
           done(err);
           return;
         });
-
     });
   });
 
@@ -63,17 +73,65 @@ describe('Text', function() {
     it('should get the right response format', function(done) {
       indico.textTags('Really enjoyed the movie.')
         .then(function(res){
-
           // number of categories
           Object.keys(res).should.have.length(111)
+          done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('predictText', function() {
+    it('should get results from multiple text apis', function(done) {
+
+      var example = 'Really enjoyed the movie.';
+
+      indico.predictText(example, {'apis': ['sentiment', 'textTags']})
+        .then(function(res){
+          Object.keys(res).should.have.length(2);
+          done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('Keyword Arguments Function', function() {
+    it('Keyword arguments should function when passed into config', function(done) {
+      indico.textTags('Really enjoyed the movie.', {'top_n': 5})
+        .then(function(res){
+
+          // number of categories
+          Object.keys(res).should.have.length(5)
           done();
         })
         .catch(function(err){
 
           done(err);
           return;
-        })
+        });
+    });
+  });
 
+  describe('keywords', function() {
+    it('should get the right response format', function(done) {
+      indico.keywords("A working api is key to our young company's success", {top_n: 3})
+        .then(function(res){
+
+          // number of keywords
+          Object.keys(res).should.have.length(3)
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
     });
   });
 });
@@ -131,6 +189,29 @@ describe('BatchText', function() {
     });
   });
 
+  describe('batchSentimentHQ', function() {
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        'Really enjoyed the movie.',
+        'Worst day ever.'
+      ];
+
+      indico.batchSentimentHQ(examples)
+        .then(function(res){
+
+          res.should.have.length(examples.length);
+          res[0].should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
   describe('batchLanguage', function() {
     it('should get the right response format', function(done) {
 
@@ -139,19 +220,18 @@ describe('BatchText', function() {
         'Clearly an english sentence'
       ];
       indico.batchLanguage(examples)
-      .then(function(res) {
+        .then(function(res) {
 
-        // number of languages
-        res.should.have.length(examples.length);
-        Object.keys(res[0]).should.have.length(33);
-        done();
-      })
-      .catch(function(err){
+          // number of languages
+          res.should.have.length(examples.length);
+          Object.keys(res[0]).should.have.length(33);
+          done();
+        })
+        .catch(function(err){
 
-        done(err);
-        return;
-      });
-
+          done(err);
+          return;
+        });
     });
   });
 
@@ -175,7 +255,45 @@ describe('BatchText', function() {
           done(err);
           return;
         });
+    });
+  });
 
+  describe('batchPredictText', function() {
+    it('should get results from multiple text apis', function(done) {
+      var examples = [
+        'Really enjoyed the movie.',
+        'Not looking forward to rain tomorrow'
+      ];
+      indico.batchPredictText(examples, {'apis': ['sentiment', 'textTags']})
+        .then(function(res){
+          Object.keys(res).should.have.length(2);
+          res['sentiment'].should.have.length(2);
+          done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchKeywords', function() {
+    it('should get the right response format', function(done) {
+      var examples = [
+        'Really enjoyed the movie.',
+        'Not looking forward to rain tomorrow'
+      ];
+      indico.batchKeywords(examples, {top_n:3})
+        .then(function(res){
+
+          res.should.have.length(examples.length);
+          Object.keys(res[0]).should.have.length(3);
+          done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
     });
   });
 });
