@@ -38,6 +38,20 @@ describe('Text', function() {
     });
   });
 
+  describe('twitter_engagement', function() {
+    it('should get the right response format', function(done) {
+      indico.twitterEngagement('#Breaking rt if you <3 pic.twitter.com @Startup')
+        .then(function(res) {
+          res.should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
+    });
+  });
+
   describe('sentimentHQ', function() {
     it('should get the right response format', function(done) {
       indico.sentimentHQ('Really enjoyed the movie.')
@@ -198,6 +212,29 @@ describe('BatchText', function() {
       ];
 
       indico.batchSentimentHQ(examples)
+        .then(function(res){
+
+          res.should.have.length(examples.length);
+          res[0].should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchTwitterEngagement', function() {
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        'Pic.twitter.com rt if #breaking',
+        'Worst tweet ever'
+      ];
+
+      indico.batchTwitterEngagement(examples)
         .then(function(res){
 
           res.should.have.length(examples.length);
