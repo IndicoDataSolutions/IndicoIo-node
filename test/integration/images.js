@@ -235,7 +235,6 @@ describe('Image', function() {
         .then(function(res){
           lwip.open(new Buffer(res, 'base64'), 'png', function (err, image) {
               if (err) {
-                  console.log(err);
                   return;
               }
               image.width().should.equal(48)
@@ -245,10 +244,10 @@ describe('Image', function() {
     });
   });
 
-  describe('predictImage', function() {
+  describe('analyzeImage', function() {
     it('should get the right response format', function(done) {
-      indico.predictImage(data, {'apis': ['imageFeatures', 'facialFeatures']})
-        .then(function(res){
+      indico.analyzeImage(data, {'apis': ['imageFeatures', 'facialFeatures']})
+        .then(function(res) {
           Object.keys(res).should.have.length(2);
           Object.keys(res['imageFeatures']).should.have.length(2048)
           done();
@@ -261,9 +260,9 @@ describe('Image', function() {
     });
   });
 
-  describe('batchPredictImage', function() {
+  describe('batchanalyzeImage', function() {
     it('should get the right response format', function(done) {
-      indico.predictImage([data], {'apis': ['imageFeatures', 'facialFeatures']})
+      indico.analyzeImage([data], {'apis': ['imageFeatures', 'facialFeatures']})
         .then(function(res){
           res['imageFeatures'].should.have.length(1)
           res['imageFeatures'][0].should.have.length(2048)
