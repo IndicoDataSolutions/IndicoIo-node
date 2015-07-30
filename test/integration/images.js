@@ -211,7 +211,7 @@ describe('Image', function() {
       });
     });
   });
-    
+
   describe('predictImage', function() {
     it('should get the right response format', function(done) {
       indico.predictImage(data, {'apis': ['imageFeatures', 'facialFeatures']})
