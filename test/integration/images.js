@@ -7,8 +7,7 @@ var indico = require('../..')
   , path = require('path');
   ;
 
-  var data = fs.readFileSync(path.join(__dirname, '..', 'base64.txt'), { encoding: 'utf8' });
-
+var data = fs.readFileSync(path.join(__dirname, '..', 'base64.txt'), { encoding: 'utf8' });
  // Silence Warnings
 console.warn = function () {};
 describe('BatchImage', function () {
