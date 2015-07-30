@@ -165,7 +165,7 @@ describe('BatchText', function() {
         "Steps are being taken to address inflation."
       ];
 
-      indico.batchPolitical(examples)
+      indico.political(examples)
         .then(function(res) {
 
           res.should.have.length(examples.length);
@@ -188,7 +188,7 @@ describe('BatchText', function() {
         'Worst day ever.'
       ];
 
-      indico.batchSentiment(examples)
+      indico.sentiment(examples)
         .then(function(res){
 
           res.should.have.length(examples.length);
@@ -211,7 +211,7 @@ describe('BatchText', function() {
         'Worst day ever.'
       ];
 
-      indico.batchSentimentHQ(examples)
+      indico.sentimentHQ(examples)
         .then(function(res){
 
           res.should.have.length(examples.length);
@@ -234,7 +234,7 @@ describe('BatchText', function() {
         'Worst tweet ever'
       ];
 
-      indico.batchTwitterEngagement(examples)
+      indico.twitterEngagement(examples)
         .then(function(res){
 
           res.should.have.length(examples.length);
@@ -256,7 +256,7 @@ describe('BatchText', function() {
         'Quis custodiet ipsos custodes',
         'Clearly an english sentence'
       ];
-      indico.batchLanguage(examples)
+      indico.language(examples)
         .then(function(res) {
 
           // number of languages
@@ -280,7 +280,7 @@ describe('BatchText', function() {
         'Not looking forward to rain tomorrow'
       ];
 
-      indico.batchTextTags(examples)
+      indico.textTags(examples)
         .then(function(res){
 
           res.should.have.length(examples.length);
@@ -301,7 +301,7 @@ describe('BatchText', function() {
         'Really enjoyed the movie.',
         'Not looking forward to rain tomorrow'
       ];
-      indico.batchPredictText(examples, {'apis': ['sentiment', 'textTags']})
+      indico.predictText(examples, {'apis': ['sentiment', 'textTags']})
         .then(function(res){
           Object.keys(res).should.have.length(2);
           res['sentiment'].should.have.length(2);
@@ -320,7 +320,7 @@ describe('BatchText', function() {
         'Really enjoyed the movie.',
         'Not looking forward to rain tomorrow'
       ];
-      indico.batchKeywords(examples, {top_n:3})
+      indico.keywords(examples, {top_n:3})
         .then(function(res){
 
           res.should.have.length(examples.length);
