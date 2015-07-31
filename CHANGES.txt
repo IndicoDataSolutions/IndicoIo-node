@@ -5,7 +5,8 @@ v0.1.6, Tue Oct 21 -- Updated to route calls to new remote server
 v0.1.7, Fri Nov 7 -- Updated to include new texttags API
 v0.1.9, Fri Nov 7 -- Readme update
 v0.1.10, Wed Nov 26 -- Batch support
-v0.1.11, Thu Dec 19 -- Batch authorization 
+v0.1.11, Thu Dec 19 -- Batch authorization
 v0.2.0, Wed March 18 -- Private cloud support and auth configuration
 v0.3.1, Thu May 29 -- Log client library name and version number
 v0.4.0, Fri Jul 10 -- Facial localization, Named Entities SentimentHQ, and Keywords APIs added
+v0.4.1, Fri Jul 10 -- Added Twitter Engagement API, Batch functionality deprecation, resizing logic for better performance
