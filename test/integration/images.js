@@ -162,6 +162,24 @@ describe('Image', function() {
     });
   });
 
+  describe('facialLocalization', function() {
+    it('should get the right response format', function(done) {
+      indico.facialLocalization(data)
+        .then(function(res){
+
+          res.should.have.length(1);
+          Object.keys(res[0]).should.have.length(2);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        })
+
+    });
+  });
+
   describe('imageFeatures', function() {
     it('should get the right response format', function(done) {
       indico.imageFeatures(data)
