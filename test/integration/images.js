@@ -66,7 +66,23 @@ describe('BatchImage', function () {
           done(err);
           return;
         })
+    });
+  });
 
+  describe('batchFacialLocalization', function() {
+    it('should get the right response format', function(done) {
+      indico.facialLocalization([data])
+        .then(function(res){
+
+          res.should.have.length(1);
+          Object.keys(res[0]).should.have.length(1);
+          done();
+        })
+        .catch(function(err) {
+
+          done(err);
+          return;
+        })
     });
   });
 
@@ -135,6 +151,24 @@ describe('Image', function() {
         .then(function(res){
 
           res.should.have.length(48);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        })
+
+    });
+  });
+
+  describe('facialLocalization', function() {
+    it('should get the right response format', function(done) {
+      indico.facialLocalization(data)
+        .then(function(res){
+
+          res.should.have.length(1);
+          Object.keys(res[0]).should.have.length(2);
           done();
         })
         .catch(function(err){
