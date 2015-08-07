@@ -38,6 +38,20 @@ describe('Text', function() {
     });
   });
 
+  describe('twitter_engagement', function() {
+    it('should get the right response format', function(done) {
+      indico.twitterEngagement('#Breaking rt if you <3 pic.twitter.com @Startup')
+        .then(function(res) {
+          res.should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
+    });
+  });
+
   describe('sentimentHQ', function() {
     it('should get the right response format', function(done) {
       indico.sentimentHQ('Really enjoyed the movie.')
@@ -107,7 +121,7 @@ describe('Text', function() {
         .then(function(res){
 
           // number of categories
-          Object.keys(res).should.have.length(5)
+          Object.keys(res).should.have.length(5);
           done();
         })
         .catch(function(err){
@@ -124,7 +138,43 @@ describe('Text', function() {
         .then(function(res){
 
           // number of keywords
+          Object.keys(res).should.have.length(3);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('keywords', function() {
+    it('should get the right response format with specified language', function(done) {
+      text = "La semaine suivante, il remporte sa premiere victoire, dans la descente de Val Gardena en Italie, près de cinq ans après la dernière victoire en Coupe du monde d'un Français dans cette discipline, avec le succès de Nicolas Burtin à Kvitfjell."
+      indico.keywords(text, {top_n: 3, language: 'French'})
+        .then(function(res){
+
+          // number of keywords
           Object.keys(res).should.have.length(3)
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('keywords', function() {
+    it('should get the right response format with auto detect language', function(done) {
+      text = "La semaine suivante, il remporte sa premiere victoire, dans la descente de Val Gardena en Italie, près de cinq ans après la dernière victoire en Coupe du monde d'un Français dans cette discipline, avec le succès de Nicolas Burtin à Kvitfjell."
+      indico.keywords(text, {top_n: 3, language: 'detect'})
+        .then(function(res){
+
+          // number of keywords
+          Object.keys(res).should.have.length(3);
           done();
         })
         .catch(function(err){
@@ -151,7 +201,7 @@ describe('BatchText', function() {
         "Steps are being taken to address inflation."
       ];
 
-      indico.batchPolitical(examples)
+      indico.political(examples)
         .then(function(res) {
 
           res.should.have.length(examples.length);
@@ -174,7 +224,7 @@ describe('BatchText', function() {
         'Worst day ever.'
       ];
 
-      indico.batchSentiment(examples)
+      indico.sentiment(examples)
         .then(function(res){
 
           res.should.have.length(examples.length);
@@ -197,7 +247,30 @@ describe('BatchText', function() {
         'Worst day ever.'
       ];
 
-      indico.batchSentimentHQ(examples)
+      indico.sentimentHQ(examples)
+        .then(function(res){
+
+          res.should.have.length(examples.length);
+          res[0].should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchTwitterEngagement', function() {
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        'Pic.twitter.com rt if #breaking',
+        'Worst tweet ever'
+      ];
+
+      indico.twitterEngagement(examples)
         .then(function(res){
 
           res.should.have.length(examples.length);
@@ -219,7 +292,7 @@ describe('BatchText', function() {
         'Quis custodiet ipsos custodes',
         'Clearly an english sentence'
       ];
-      indico.batchLanguage(examples)
+      indico.language(examples)
         .then(function(res) {
 
           // number of languages
@@ -243,7 +316,7 @@ describe('BatchText', function() {
         'Not looking forward to rain tomorrow'
       ];
 
-      indico.batchTextTags(examples)
+      indico.textTags(examples)
         .then(function(res){
 
           res.should.have.length(examples.length);
@@ -264,7 +337,7 @@ describe('BatchText', function() {
         'Really enjoyed the movie.',
         'Not looking forward to rain tomorrow'
       ];
-      indico.batchPredictText(examples, {'apis': ['sentiment', 'textTags']})
+      indico.predictText(examples, {'apis': ['sentiment', 'textTags']})
         .then(function(res){
           Object.keys(res).should.have.length(2);
           res['sentiment'].should.have.length(2);
@@ -283,7 +356,7 @@ describe('BatchText', function() {
         'Really enjoyed the movie.',
         'Not looking forward to rain tomorrow'
       ];
-      indico.batchKeywords(examples, {top_n:3})
+      indico.keywords(examples, {top_n:3})
         .then(function(res){
 
           res.should.have.length(examples.length);

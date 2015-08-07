@@ -1,6 +1,5 @@
 var indico = require('../..')
   , settings = require('../../lib/settings.js')
-  , data = require('../data.json')
   , should = require('chai').should()
   , image = require('../../lib/image.js')
   , lwip = require('lwip')
@@ -8,6 +7,7 @@ var indico = require('../..')
   , path = require('path');
   ;
 
+var data = fs.readFileSync(path.join(__dirname, '..', 'base64.txt'), { encoding: 'utf8' });
  // Silence Warnings
 console.warn = function () {};
 describe('BatchImage', function () {
@@ -18,7 +18,7 @@ describe('BatchImage', function () {
   }
   describe('batchFer', function() {
     it('should get the right response format', function(done) {
-      indico.batchFer([data])
+      indico.fer([data])
         .then(function(res){
 
           res.should.have.length(1);
@@ -36,7 +36,7 @@ describe('BatchImage', function () {
 
   describe('batchContentFiltering', function() {
     it('should get the right response format', function(done) {
-      indico.batchContentFiltering([data])
+      indico.contentFiltering([data])
         .then(function(res){
 
           res.should.have.length(1);
@@ -54,7 +54,7 @@ describe('BatchImage', function () {
 
   describe('batchFacialFeatures', function() {
     it('should get the right response format', function(done) {
-      indico.batchFacialFeatures([data])
+      indico.facialFeatures([data])
         .then(function(res){
 
           res.should.have.length(1);
@@ -66,13 +66,29 @@ describe('BatchImage', function () {
           done(err);
           return;
         })
+    });
+  });
 
+  describe('batchFacialLocalization', function() {
+    it('should get the right response format', function(done) {
+      indico.facialLocalization([data])
+        .then(function(res){
+
+          res.should.have.length(1);
+          Object.keys(res[0]).should.have.length(1);
+          done();
+        })
+        .catch(function(err) {
+
+          done(err);
+          return;
+        })
     });
   });
 
   describe('batchImageFeatures', function() {
     it('should get the right response format', function(done) {
-      indico.batchImageFeatures([data])
+      indico.imageFeatures([data])
         .then(function(res){
 
           res.should.have.length(1);
@@ -146,6 +162,24 @@ describe('Image', function() {
     });
   });
 
+  describe('facialLocalization', function() {
+    it('should get the right response format', function(done) {
+      indico.facialLocalization(data)
+        .then(function(res){
+
+          res.should.have.length(1);
+          Object.keys(res[0]).should.have.length(2);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        })
+
+    });
+  });
+
   describe('imageFeatures', function() {
     it('should get the right response format', function(done) {
       indico.imageFeatures(data)
@@ -164,8 +198,7 @@ describe('Image', function() {
 
   describe('base64', function() {
     it('should get the right response format', function(done) {
-      var base64Str = fs.readFileSync(path.join(__dirname, '..', 'base64.txt'), { encoding: 'utf8' })
-      indico.imageFeatures(base64Str)
+      indico.imageFeatures(data)
         .then(function(res){
 
           res.should.have.length(2048);
@@ -211,7 +244,7 @@ describe('Image', function() {
       });
     });
   });
-    
+
   describe('predictImage', function() {
     it('should get the right response format', function(done) {
       indico.predictImage(data, {'apis': ['imageFeatures', 'facialFeatures']})
@@ -230,7 +263,7 @@ describe('Image', function() {
 
   describe('batchPredictImage', function() {
     it('should get the right response format', function(done) {
-      indico.batchPredictImage([data], {'apis': ['imageFeatures', 'facialFeatures']})
+      indico.predictImage([data], {'apis': ['imageFeatures', 'facialFeatures']})
         .then(function(res){
           res['imageFeatures'].should.have.length(1)
           res['imageFeatures'][0].should.have.length(2048)
