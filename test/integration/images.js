@@ -260,7 +260,7 @@ describe('Image', function() {
     });
   });
 
-  describe('batchanalyzeImage', function() {
+  describe('batchAnalyzeImage', function() {
     it('should get the right response format', function(done) {
       indico.analyzeImage([data], {'apis': ['imageFeatures', 'facialFeatures']})
         .then(function(res){

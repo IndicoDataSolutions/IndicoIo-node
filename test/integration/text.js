@@ -353,7 +353,7 @@ describe('BatchText', function() {
     });
   });
 
-  describe('batchanalyzeText', function() {
+  describe('batchAnalyzeText', function() {
     it('should get results from multiple text apis', function(done) {
       var examples = [
         'Really enjoyed the movie.',
@@ -383,8 +383,8 @@ describe('BatchText', function() {
 
       indico.intersections(examples, {'apis': ['textTags', 'sentiment']})
       .then(function (res){
-        expect(res).to.have.property('sentiment');
-        expect(Object.keys(res["sentiment"])).to.have.length(111);
+        expect(Object.keys(res)).to.have.length(111);
+        expect(res['golf']).to.have.property('sentiment');
         done()
       })
       .catch(function(err){
@@ -395,14 +395,12 @@ describe('BatchText', function() {
 
     it('should get the right response format in historic mode', function(done) {
         this.timeout(5000);
-      indico.textTags(examples)
-      .then(function (textTags) {
-        indico.sentiment(examples)
-        .then(function (sentiments) {
-          indico.intersections({ "textTags": textTags, "sentiment" : sentiments }, {'apis': ['textTags', 'sentiment']})
+      indico.analyzeText(examples, {'apis': ['textTags', 'sentiment']})
+      .then(function (res) {
+          indico.intersections(res, {'apis': ['textTags', 'sentiment']})
           .then(function (res){
-              expect(res).to.have.property('sentiment');
-              expect(Object.keys(res["sentiment"])).to.have.length(111);
+              expect(res['golf']).to.have.property('sentiment');
+              expect(Object.keys(res)).to.have.length(111);
             done();
           })
           .catch(function(err){
@@ -414,11 +412,6 @@ describe('BatchText', function() {
           done(err);
           return;
         });
-      })
-      .catch(function(err){
-        done(err);
-        return;
-      });
     });
   });
 });
