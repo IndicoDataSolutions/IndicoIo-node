@@ -1,6 +1,7 @@
 var indico = require('../..')
   , settings = require('../../lib/settings.js')
   , should = require('chai').should()
+  , expect = require('chai').expect
   ;
 
 describe('Text', function() {
@@ -98,12 +99,13 @@ describe('Text', function() {
     });
   });
 
-  describe('predictText', function() {
+
+  describe('analyzeText', function() {
     it('should get results from multiple text apis', function(done) {
 
       var example = 'Really enjoyed the movie.';
 
-      indico.predictText(example, {'apis': ['sentiment', 'textTags']})
+      indico.analyzeText(example, {'apis': ['sentiment', 'textTags']})
         .then(function(res){
           Object.keys(res).should.have.length(2);
           done();
@@ -331,25 +333,6 @@ describe('BatchText', function() {
     });
   });
 
-  describe('batchPredictText', function() {
-    it('should get results from multiple text apis', function(done) {
-      var examples = [
-        'Really enjoyed the movie.',
-        'Not looking forward to rain tomorrow'
-      ];
-      indico.predictText(examples, {'apis': ['sentiment', 'textTags']})
-        .then(function(res){
-          Object.keys(res).should.have.length(2);
-          res['sentiment'].should.have.length(2);
-          done();
-        })
-        .catch(function(err){
-          done(err);
-          return;
-        });
-    });
-  });
-
   describe('batchKeywords', function() {
     it('should get the right response format', function(done) {
       var examples = [
@@ -362,6 +345,68 @@ describe('BatchText', function() {
           res.should.have.length(examples.length);
           Object.keys(res[0]).should.have.length(3);
           done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchAnalyzeText', function() {
+    it('should get results from multiple text apis', function(done) {
+      var examples = [
+        'Really enjoyed the movie.',
+        'Not looking forward to rain tomorrow'
+      ];
+      indico.analyzeText(examples, {'apis': ['sentiment', 'textTags']})
+        .then(function(res){
+          Object.keys(res).should.have.length(2);
+          res['sentiment'].should.have.length(2);
+          done();
+        })
+        .catch(function(err){
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('intersections', function() {
+    var examples = [
+      'Really enjoyed the movie.',
+      'Not looking forward to rain tomorrow',
+      'Our apis go together like pb and j'
+    ];
+
+    it('should get the right response format in api mode', function(done) {
+
+      indico.intersections(examples, {'apis': ['textTags', 'sentiment']})
+      .then(function (res){
+        expect(Object.keys(res)).to.have.length(111);
+        expect(res['golf']).to.have.property('sentiment');
+        done()
+      })
+      .catch(function(err){
+        done(err);
+        return;
+      });
+    });
+
+    it('should get the right response format in historic mode', function(done) {
+        this.timeout(5000);
+      indico.analyzeText(examples, {'apis': ['textTags', 'sentiment']})
+      .then(function (res) {
+          indico.intersections(res, {'apis': ['textTags', 'sentiment']})
+          .then(function (res){
+              expect(res['golf']).to.have.property('sentiment');
+              expect(Object.keys(res)).to.have.length(111);
+            done();
+          })
+          .catch(function(err){
+            done(err);
+            return;
+          });
         })
         .catch(function(err){
           done(err);
