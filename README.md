@@ -6,6 +6,7 @@ A node.js wrapper for the [indico API](http://indico.io).
 
 Install with [npm](http://npmjs.org/)
 
+Currently, we are experiencing an issue with installing the `lwip` dependency. A temporary workaround while we are finding a fix is to use node version `0.12.7` : `nvm use 0.12.7`.
 ```
 npm install indico.io
 ```

@@ -31,7 +31,7 @@ describe('ImageRecognition', function () {
     });
     describe('batch', function() {
       it('should get the right response format', function(done) {
-        indico.imageRecognition([data, data])
+        indico.imageRecognition([data, data], {'top_n': 3})
           .then(function(res){
 
             res.should.have.length(2);

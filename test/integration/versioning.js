@@ -1,9 +1,12 @@
 var indico = require('../..')
 , settings = require('../../lib/settings.js')
+, fs = require('fs')
+, path = require('path')
 , should = require('chai').should()
 , expect = require('chai').expect
 ;
 
+var data = fs.readFileSync(path.join(__dirname, '..', 'base64.txt'), { encoding: 'utf8' });
 
 describe('Versioning', function() {
     if (settings.resolveApiKey() === false) {
@@ -24,5 +27,21 @@ describe('Versioning', function() {
                 return;
             });
         });
+    });
+    describe('version 2 for image features', function() {
+      it('should get the right response format', function(done) {
+        indico.imageFeatures(data, {"version": 2})
+          .then(function(res){
+
+            Object.keys(res).should.have.length(4096);
+            done();
+          })
+          .catch(function(err) {
+
+            done(err);
+            return;
+          })
+
+      });
     });
 });
