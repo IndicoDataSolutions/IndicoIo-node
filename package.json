@@ -34,7 +34,8 @@
     "expand-tilde": "^1.2.0",
     "file-type": "^2.11.0",
     "lwip": "^0.0.7",
-    "request": "~2.36.0"
+    "request": "^2.36.0",
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "should": "~3.0.1",
