@@ -39,22 +39,4 @@ describe('File types', function () {
           done();
       });
   });
-  it('URL JPG', function (done) {
-      image.preprocess("http://www.myhoundhaven.org/images/Golden%20Retriever.jpg", 64, true, false).then(function (result) {
-          result.should.be.a('string');
-          done();
-      });
-  });
-  it('URL GIF', function (done) {
-      image.preprocess("http://www.dognameguide.com/images/dog.gif", 64, true, false).then(function (result) {
-          result.should.be.a('string');
-          done();
-      });
-  });
-  it('URL PNG', function (done) {
-      image.preprocess("http://www.butlercountyhs.org/Graphics/Dogs/ButlerHumaneSociety3.png", 64, true, false).then(function (result) {
-          result.should.be.a('string');
-          done();
-      });
-  });
 });

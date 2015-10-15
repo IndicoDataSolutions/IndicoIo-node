@@ -128,6 +128,24 @@ describe('Image', function() {
     });
   });
 
+  describe('url support', function() {
+    it('should get the right response format', function(done) {
+      indico.fer("https://s3-us-west-2.amazonaws.com/indico-test-data/face.jpg")
+        .then(function(res){
+
+          Object.keys(res).should.have.length(6);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        })
+
+    });
+  });
+
+
   describe('contentFiltering', function() {
     it('should get the right response format', function(done) {
       indico.contentFiltering(data)
