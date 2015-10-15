@@ -12,3 +12,5 @@ v0.4.0, Fri Jul 10 -- Facial localization, Named Entities SentimentHQ, and Keywo
 v0.4.1, Fri Jul 10 -- Added Twitter Engagement API, Batch functionality deprecation, resizing logic for better performance
 v0.4.2, Fri Aug 14 -- Added intersections Api, predictText -> analyzeText, predictImage -> analyzeImage
 v0.4.3, Tue Sept 22 -- Added Versioning and Image Recognition
+v0.4.4, Tue Sept 22 -- LWIP update
+v0.4.5, Tue Oct 14 -- Added URL Support
