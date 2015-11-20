@@ -25,6 +25,21 @@ describe('Text', function() {
     });
   });
 
+  describe('mysersBriggs', function() {
+    it('should get the right response format', function(done) {
+
+      indico.myersBriggs("I love my friends!")
+        .then(function(res) {
+          Object.keys(res).should.have.length(9);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  });
+
   describe('sentiment', function() {
     it('should get the right response format', function(done) {
       indico.sentiment('Really enjoyed the movie.')
@@ -208,6 +223,30 @@ describe('BatchText', function() {
 
           res.should.have.length(examples.length);
           Object.keys(res[0]).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchMyersBriggs', function() {
+
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        "I love my friends!",
+        "I like to be alone."
+      ];
+
+      indico.myersBriggs(examples)
+        .then(function(res) {
+
+          res.should.have.length(examples.length);
+          Object.keys(res[0]).should.have.length(9);
           done();
         })
         .catch(function(err){
