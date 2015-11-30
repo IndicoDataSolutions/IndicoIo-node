@@ -25,12 +25,27 @@ describe('Text', function() {
     });
   });
 
-  describe('mysersBriggs', function() {
+  describe('personlity', function() {
     it('should get the right response format', function(done) {
 
-      indico.myersBriggs("I love my friends!")
+      indico.personality("I love my friends!")
         .then(function(res) {
-          Object.keys(res).should.have.length(9);
+          Object.keys(res).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  });
+
+  describe('personas', function() {
+    it('should get the right response format', function(done) {
+
+      indico.personas("I love my friends!")
+        .then(function(res) {
+          Object.keys(res).should.have.length(16);
           done();
         })
         .catch(function(err){
@@ -233,7 +248,7 @@ describe('BatchText', function() {
     });
   });
 
-  describe('batchMyersBriggs', function() {
+  describe('batchPersonality', function() {
 
     it('should get the right response format', function(done) {
 
@@ -242,11 +257,35 @@ describe('BatchText', function() {
         "I like to be alone."
       ];
 
-      indico.myersBriggs(examples)
+      indico.personality(examples)
         .then(function(res) {
 
           res.should.have.length(examples.length);
-          Object.keys(res[0]).should.have.length(9);
+          Object.keys(res[0]).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchPersonas', function() {
+
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        "I love my friends!",
+        "I like to be alone."
+      ];
+
+      indico.personas(examples)
+        .then(function(res) {
+
+          res.should.have.length(examples.length);
+          Object.keys(res[0]).should.have.length(16);
           done();
         })
         .catch(function(err){
