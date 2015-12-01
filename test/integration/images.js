@@ -92,7 +92,7 @@ describe('BatchImage', function () {
         .then(function(res){
 
           res.should.have.length(1);
-          Object.keys(res[0]).should.have.length(2048);
+          Object.keys(res[0]).should.have.length(4096);
           done();
         })
         .catch(function(err) {
@@ -203,7 +203,7 @@ describe('Image', function() {
       indico.imageFeatures(data)
         .then(function(res){
 
-          res.should.have.length(2048);
+          res.should.have.length(4096);
           done();
         })
         .catch(function(err){
@@ -219,7 +219,7 @@ describe('Image', function() {
       indico.imageFeatures(data)
         .then(function(res){
 
-          res.should.have.length(2048);
+          res.should.have.length(4096);
           done();
         })
         .catch(function(err){
@@ -236,7 +236,7 @@ describe('Image', function() {
       indico.imageFeatures(filePath)
         .then(function(res){
 
-          res.should.have.length(2048);
+          res.should.have.length(4096);
           done();
         })
         .catch(function(err){

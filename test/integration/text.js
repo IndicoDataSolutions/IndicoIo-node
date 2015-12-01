@@ -25,6 +25,36 @@ describe('Text', function() {
     });
   });
 
+  describe('personlity', function() {
+    it('should get the right response format', function(done) {
+
+      indico.personality("I love my friends!")
+        .then(function(res) {
+          Object.keys(res).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  });
+
+  describe('personas', function() {
+    it('should get the right response format', function(done) {
+
+      indico.personas("I love my friends!")
+        .then(function(res) {
+          Object.keys(res).should.have.length(16);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  });
+
   describe('sentiment', function() {
     it('should get the right response format', function(done) {
       indico.sentiment('Really enjoyed the movie.')
@@ -208,6 +238,54 @@ describe('BatchText', function() {
 
           res.should.have.length(examples.length);
           Object.keys(res[0]).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchPersonality', function() {
+
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        "I love my friends!",
+        "I like to be alone."
+      ];
+
+      indico.personality(examples)
+        .then(function(res) {
+
+          res.should.have.length(examples.length);
+          Object.keys(res[0]).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchPersonas', function() {
+
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        "I love my friends!",
+        "I like to be alone."
+      ];
+
+      indico.personas(examples)
+        .then(function(res) {
+
+          res.should.have.length(examples.length);
+          Object.keys(res[0]).should.have.length(16);
           done();
         })
         .catch(function(err){
