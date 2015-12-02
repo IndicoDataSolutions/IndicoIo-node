@@ -20,7 +20,23 @@ describe('Custom', function() {
   }
   
   describe('addData', function() {
-    it('should add data to a collection', function(done) {
+    it('should add a single example to a collection', function(done) {
+      indico.Collection("test").clear().then(function() {
+        var testCollection = indico.Collection("test");
+        
+        testCollection.info().then(function(res) {
+          res['status'].should.equal('no examples');
+          testCollection.addData(testData[0]).then(function() {
+            testCollection.info().then(function(res) {
+              res['number_of_examples'].should.equal(1);
+              done();
+            });
+          });
+        });
+      });
+    });
+
+    it('should batch add data to a collection', function(done) {
       indico.Collection("test").clear().then(function() {
         var testCollection = indico.Collection("test");
         
@@ -34,7 +50,15 @@ describe('Custom', function() {
           });
         });
       });
+    });
 
+    it('should return an error if no data is provided', function(done) {
+      var testCollection = indico.Collection("test");
+
+      testCollection.addData().then(function(res) {
+        JSON.parse(res).should.have.key("error");
+        done()
+      })
     });
   });
 
@@ -50,6 +74,29 @@ describe('Custom', function() {
             });
           });
         });
+      })
+    });
+
+    it('should batch remove examples', function(done) {
+      indico.Collection("test").clear().then(function() {
+        var testCollection = indico.Collection("test");
+        testCollection.addData(testData).then(function() {
+          testCollection.removeExample(['sometimes tests are fun','aidan rules','meow meow meow']).then(function() {
+            testCollection.info().then(function(res) {
+              res['number_of_examples'].should.equal(0);
+              done()
+            });
+          });
+        });
+      })
+    });
+
+    it('should return an error if no data is provided', function(done) {
+      var testCollection = indico.Collection("test");
+
+      testCollection.removeExample().then(function(res) {
+        JSON.parse(res).should.have.key("error");
+        done()
       })
     });
   });
@@ -140,6 +187,15 @@ describe('Custom', function() {
           });
         });
       });
+    });
+
+    it('should return an error if no data is provided', function(done) {
+      var testCollection = indico.Collection("test");
+
+      testCollection.predict().then(function(res) {
+        JSON.parse(res).should.have.key("error");
+        done()
+      })
     });
   });
 
