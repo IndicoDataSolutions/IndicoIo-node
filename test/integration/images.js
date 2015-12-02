@@ -199,6 +199,7 @@ describe('Image', function() {
   });
 
   describe('imageFeatures', function() {
+    this.timeout(5000);
     it('should get the right response format', function(done) {
       indico.imageFeatures(data)
         .then(function(res){
