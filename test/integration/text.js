@@ -492,7 +492,7 @@ describe('BatchText', function() {
         });
     });
   });
-  
+
   describe('batchPersonality', function() {
 
     it('should get the right response format', function(done) {
