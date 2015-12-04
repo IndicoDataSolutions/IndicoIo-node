@@ -5,6 +5,8 @@ var indico = require('../..')
   ;
 
 describe('Text', function() {
+  this.timeout(10000);
+
   if (settings.resolveApiKey() === false) {
     // skip test -- indico auth keys are not available
     console.warn('Api keys are now required. Skipping some tests.\nhttp://docs.indico.io/v2.0/docs/api-keys')
