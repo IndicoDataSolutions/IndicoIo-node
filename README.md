@@ -12,20 +12,37 @@ npm install indico.io
 
 API Keys + Setup
 ----------------
-For API key registration and setup, checkout our [quickstart guide](http://docs.indico.io/v2.0/docs/api-keys).
-
-Full Documentation
-------------
-Detailed documentation and further code examples are available at [indico.reame.io](http://indico.readme.io/v2.0/docs/node).
+For API key registration and setup, checkout our [quickstart guide](https://indico.io/docs#quickstart).
 
 ### Supported APIs
+
+#### Text
 - Sentiment Analysis
 - Text Tagging
 - Political Analysis
 - Language Detection
+- Keyword Detection
+- Named Entity Extraction
+- Twitter Virality
+- Intersectional Analysis
+- Multi-API Analysis
+
+#### Image
 - Facial Emotion Recognition
 - Image Feature Extraction
 - Facial Feature Extraction
+- Face Localization
+- Content Filtering
+- Image Recognition
+- Multi-API Analysis
+
+#### Custom Collections
+- Train on your own data and make customized predictions
+
+Full Documentation
+------------
+Detailed documentation and further code examples are available at [indico.reame.io](https://indico.io/docs).
+
 
 ### Examples
 
