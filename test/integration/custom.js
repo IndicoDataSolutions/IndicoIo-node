@@ -18,12 +18,12 @@ describe('Custom', function() {
     console.warn('Api keys are now required. Skipping some tests.\nhttp://docs.indico.io/v2.0/docs/api-keys')
     return;
   }
-  
+
   describe('addData', function() {
     it('should add a single example to a collection', function(done) {
       indico.Collection("test").clear().then(function() {
         var testCollection = indico.Collection("test");
-        
+
         testCollection.info().then(function(res) {
           res['status'].should.equal('no examples');
           testCollection.addData(testData[0]).then(function() {
@@ -39,7 +39,7 @@ describe('Custom', function() {
     it('should batch add data to a collection', function(done) {
       indico.Collection("test").clear().then(function() {
         var testCollection = indico.Collection("test");
-        
+
         testCollection.info().then(function(res) {
           res['status'].should.equal('no examples');
           testCollection.addData(testData).then(function() {
@@ -105,7 +105,7 @@ describe('Custom', function() {
     it('should train the model and set status to training', function(done) {
       indico.Collection("test").clear().then(function() {
         var testCollection = indico.Collection("test");
-        
+
         testCollection.addData(testData).then(function() {
           testCollection.train().then(function(res) {
             res['status'].should.equal('training');
@@ -120,9 +120,9 @@ describe('Custom', function() {
     it('should wait for the model to be ready', function(done) {
       indico.Collection("test").clear().then(function() {
         var testCollection = indico.Collection("test");
-        
+
         testCollection.addData(testData).then(function() {
-          testCollection.train().then(testCollection.wait).then(function(res) {
+          testCollection.train().wait().then(function(res) {
             res['status'].should.equal('ready');
             done();
           });
@@ -136,12 +136,13 @@ describe('Custom', function() {
       indico.Collection("test").clear().then(function() {
         var testCollection = indico.Collection("test");
 
-        testCollection.addData(testData).then(function() {
-          testCollection.info().then(function(res) {
+        testCollection
+          .addData(testData)
+          .wait()
+          .info().then(function(res) {
             res['number_of_examples'].should.equal(3);
             done();
           });
-        });
       });
     });
 
