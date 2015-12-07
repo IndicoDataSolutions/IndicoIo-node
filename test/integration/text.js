@@ -5,6 +5,8 @@ var indico = require('../..')
   ;
 
 describe('Text', function() {
+  this.timeout(10000);
+
   if (settings.resolveApiKey() === false) {
     // skip test -- indico auth keys are not available
     console.warn('Api keys are now required. Skipping some tests.\nhttp://docs.indico.io/v2.0/docs/api-keys')
@@ -16,6 +18,36 @@ describe('Text', function() {
       indico.political("Guns don't kill people, people kill people.")
         .then(function(res) {
           Object.keys(res).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  });
+
+  describe('personality', function() {
+    it('should get the right response format', function(done) {
+
+      indico.personality("I love my friends!")
+        .then(function(res) {
+          Object.keys(res).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  });
+
+  describe('personas', function() {
+    it('should get the right response format', function(done) {
+
+      indico.personas("I love my friends!")
+        .then(function(res) {
+          Object.keys(res).should.have.length(16);
           done();
         })
         .catch(function(err){
@@ -218,6 +250,54 @@ describe('BatchText', function() {
     });
   });
 
+  describe('batchPersonality', function() {
+
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        "I love my friends!",
+        "I like to be alone."
+      ];
+
+      indico.personality(examples)
+        .then(function(res) {
+
+          res.should.have.length(examples.length);
+          Object.keys(res[0]).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchPersonas', function() {
+
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        "I love my friends!",
+        "I like to be alone."
+      ];
+
+      indico.personas(examples)
+        .then(function(res) {
+
+          res.should.have.length(examples.length);
+          Object.keys(res[0]).should.have.length(16);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
   describe('batchSentiment', function() {
     it('should get the right response format', function(done) {
 
@@ -409,6 +489,54 @@ describe('BatchText', function() {
           });
         })
         .catch(function(err){
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchPersonality', function() {
+
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        "I love my friends!",
+        "I like to be alone."
+      ];
+
+      indico.personality(examples)
+        .then(function(res) {
+
+          res.should.have.length(examples.length);
+          Object.keys(res[0]).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+
+          done(err);
+          return;
+        });
+    });
+  });
+
+  describe('batchPersonas', function() {
+
+    it('should get the right response format', function(done) {
+
+      var examples = [
+        "I love my friends!",
+        "I like to be alone."
+      ];
+
+      indico.personas(examples)
+        .then(function(res) {
+
+          res.should.have.length(examples.length);
+          Object.keys(res[0]).should.have.length(16);
+          done();
+        })
+        .catch(function(err){
+
           done(err);
           return;
         });

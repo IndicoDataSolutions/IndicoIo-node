@@ -1,14 +1,16 @@
 {
   "name": "indico.io",
   "description": "A Node.js wrapper for the Indico’s API",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "homepage": "https://github.com/IndicoDataSolutions/IndicoIo-node",
   "author": {
     "name": "Joseph Núñez <toctochello@gmail.com>",
     "email": "toctochello@gmail.com"
   },
   "contributors": [
-    "Madison May <madison@indico.io>"
+    "Madison May <madison@indico.io>",
+    "Chris Lee <chris@indico.io>",
+    "Aidan McLaughlin <aidan@indico.io"
   ],
   "keywords": [],
   "repository": {
