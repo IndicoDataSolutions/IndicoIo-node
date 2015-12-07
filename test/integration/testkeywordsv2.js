@@ -17,7 +17,7 @@ describe('TestKeywordsV2', function () {
         indico.keywords(data, {'version': 2})
           .then(function(res){
             Object.keys(res).forEach(function(key) {
-              data.indexOf(key).should.not.be(-1);
+              data.indexOf(key).should.not.eql(-1);
             });
             done();
           })
@@ -36,7 +36,7 @@ describe('TestKeywordsV2', function () {
 
             res.should.have.length(2);
             Object.keys(res[0]).forEach(function(key) {
-              data.indexOf(key).should.not.be(-1);
+              data.indexOf(key).should.not.eql(-1);
             });
             done();
           })
