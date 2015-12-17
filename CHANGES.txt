@@ -16,3 +16,4 @@ v0.4.4, Tue Sept 22 -- LWIP update
 v0.4.5, Tue Oct 14 -- Added URL Support
 v0.4.6 Fri Oct 30 -- Raise warning on credit limit exceeded
 v0.5.0 Web Dec 2 -- Addition of custom APIs, personality + persona API
+v0.5.1 Thu Dec 17 -- Addition of relevance, people, places, and organizations APIs
