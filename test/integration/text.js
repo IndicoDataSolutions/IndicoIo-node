@@ -4,6 +4,17 @@ var indico = require('../..')
   , expect = require('chai').expect
   ;
 
+var compare_by_confidence = function(a, b) {
+  if (a['confidence'] < b['confidence']) {
+     return 1;
+  }
+  if (a['confidence'] > b['confidence']) {
+     return -1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
 describe('Text', function() {
   this.timeout(10000);
 
@@ -56,6 +67,140 @@ describe('Text', function() {
         });
     });
   });
+
+  describe('people', function() {
+    it('should get the right response format', function(done) {
+
+      var text = 'Barack Obama is scheduled to give a talk next Saturday at the White House.';
+      indico.people(text)
+        .then(function(res) {
+          res.sort(compare_by_confidence)
+          res[0]['text'].should.contain('Barack Obama')
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  })
+
+  describe('people', function() {
+    it('should get the right response format', function(done) {
+
+      var text = 'Barack Obama is scheduled to give a talk next Saturday at the White House.';
+      indico.people([text, text])
+        .then(function(res) {
+          res[0].sort(compare_by_confidence)
+          res[0][0]['text'].should.contain('Barack Obama')
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  })
+
+  describe('places', function() {
+    it('should get the right response format', function(done) {
+
+      var text = 'Lets all go to Virginia Beach before it gets too cold to wander outside.';
+      indico.places(text)
+        .then(function(res) {
+          res.sort(compare_by_confidence)
+          res[0]['text'].should.contain('Virginia')
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  })
+
+  describe('places', function() {
+    it('should get the right response format', function(done) {
+
+      var text = 'Lets all go to Virginia Beach before it gets too cold to wander outside.';
+      indico.places([text, text])
+        .then(function(res) {
+          res[0].sort(compare_by_confidence)
+          res[0][0]['text'].should.contain('Virginia')
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  })
+
+  describe('organizations', function() {
+    it('should get the right response format', function(done) {
+
+      var text = "A year ago, the New York Times published confidential comments about ISIS' ideology by Major General Michael K. Nagata, then U.S. Special Operations commander in the Middle East.";
+      indico.organizations(text)
+        .then(function(res) {
+          res.sort(compare_by_confidence)
+          res[0]['text'].should.contain('ISIS')
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  })
+
+  describe('organizations', function() {
+    it('should get the right response format', function(done) {
+
+      var text = "A year ago, the New York Times published confidential comments about ISIS' ideology by Major General Michael K. Nagata, then U.S. Special Operations commander in the Middle East.";
+      indico.organizations([text, text])
+        .then(function(res) {
+          res[0].sort(compare_by_confidence)
+          res[0][0]['text'].should.contain('ISIS')
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  })
+
+  describe('relevance', function() {
+    it('should get the right response format', function(done) {
+
+      indico.relevance('president', 'president')
+        .then(function(res) {
+          res.should.be.above(0.5);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  })
+
+  describe('relevance', function() {
+    it('should get the right response format', function(done) {
+
+      indico.relevance(['president', 'Barack Obama'], ['president', 'prime minister'])
+        .then(function(res) {
+          res[0][0].should.be.above(0.5);
+          res.should.have.length(2);
+          res[0].should.have.length(2);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  })
 
   describe('sentiment', function() {
     it('should get the right response format', function(done) {
@@ -251,7 +396,6 @@ describe('BatchText', function() {
   });
 
   describe('batchPersonality', function() {
-
     it('should get the right response format', function(done) {
 
       var examples = [
