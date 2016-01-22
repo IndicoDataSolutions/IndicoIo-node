@@ -202,6 +202,39 @@ describe('Text', function() {
     });
   })
 
+  describe('text features', function() {
+    it('should get the right response format', function(done) {
+
+      indico.textFeatures('Queen of England')
+        .then(function(res) {
+          res.should.have.length(300);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  })
+
+  describe('text features batch', function() {
+    it('should get the right response format', function(done) {
+
+      indico.textFeatures(['Queen of England', 'Prime Minister of Canada'])
+        .then(function(res) {
+          res.should.have.length(2);
+          res[0].should.have.length(300);
+          res[1].should.have.length(300);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  })
+
+
   describe('sentiment', function() {
     it('should get the right response format', function(done) {
       indico.sentiment('Really enjoyed the movie.')
