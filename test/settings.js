@@ -1,5 +1,6 @@
 var indico = require('..')
   , settings = require('../lib/settings.js')
+  , services = require('../lib/services.js')
   , should = require('chai').should()
   , expandTilde = require('expand-tilde')
   , fs = require('fs')
@@ -121,7 +122,7 @@ describe('Private Cloud', function() {
 
       config = {};
 
-      // mock result of indicorc
+      // mock resultl of indicorc
       var configFile = {
         'private_cloud': {
           'cloud': privateCloud
@@ -150,6 +151,15 @@ describe('Private Cloud', function() {
       var moduleConfig = 'module_api_key';
       var cloud = settings.resolvePrivateCloud(config, moduleConfig, configFile);
       cloud.should.equal(moduleConfig);
+      done();
+    });
+  });
+  describe('Local Deployment', function() {
+    it('Should allow easy access to local deploy of indico APIs', function(done) {
+      indico.host = "localhost:8000"
+      var url = services.service("/sentiment", null, "key")
+      url.should.equal("http://localhost:8000/sentiment?key=key")
+      indico.host = "apiv2.indico.io"
       done();
     });
   });
