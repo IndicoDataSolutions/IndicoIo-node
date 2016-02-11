@@ -268,7 +268,7 @@ describe('Image', function() {
       indico.analyzeImage(data, {'apis': ['imageFeatures', 'facialFeatures']})
         .then(function(res) {
           Object.keys(res).should.have.length(2);
-          Object.keys(res['imageFeatures']).should.have.length(2048)
+          Object.keys(res['imageFeatures']).should.have.length(4096)
           done();
         })
         .catch(function(err){
@@ -284,7 +284,7 @@ describe('Image', function() {
       indico.analyzeImage([data], {'apis': ['imageFeatures', 'facialFeatures']})
         .then(function(res){
           res['imageFeatures'].should.have.length(1)
-          res['imageFeatures'][0].should.have.length(2048)
+          res['imageFeatures'][0].should.have.length(4096)
           done();
         })
         .catch(function(err){
