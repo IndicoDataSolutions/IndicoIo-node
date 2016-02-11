@@ -122,7 +122,7 @@ describe('Private Cloud', function() {
 
       config = {};
 
-      // mock resultl of indicorc
+      // mock result of indicorc
       var configFile = {
         'private_cloud': {
           'cloud': privateCloud
