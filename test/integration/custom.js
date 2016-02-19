@@ -4,6 +4,7 @@ var indico = require('../..')
   , expect = require('chai').expect
   ;
 
+
 describe('Custom', function() {
   this.timeout(35000);
 
@@ -56,7 +57,7 @@ describe('Custom', function() {
       var testCollection = indico.Collection("test");
 
       testCollection.addData().then(function(res) {
-        JSON.parse(res).should.have.key("error");
+        res.should.have.property("message");
         done()
       })
     });
@@ -95,7 +96,7 @@ describe('Custom', function() {
       var testCollection = indico.Collection("test");
 
       testCollection.removeExample().then(function(res) {
-        JSON.parse(res).should.have.key("error");
+        res.should.have.property("message");
         done()
       })
     });
@@ -194,7 +195,7 @@ describe('Custom', function() {
       var testCollection = indico.Collection("test");
 
       testCollection.predict().then(function(res) {
-        JSON.parse(res).should.have.key("error");
+        res.should.have.property("message");
         done()
       })
     });
