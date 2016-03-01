@@ -56,8 +56,8 @@ describe('Custom', function() {
     it('should return an error if no data is provided', function(done) {
       var testCollection = indico.Collection("test");
 
-      testCollection.addData().then(function(res) {
-        res.should.have.property("message");
+      testCollection.addData().catch(function(err) {
+        err.should.have.property("message");
         done()
       })
     });
@@ -95,8 +95,8 @@ describe('Custom', function() {
     it('should return an error if no data is provided', function(done) {
       var testCollection = indico.Collection("test");
 
-      testCollection.removeExample().then(function(res) {
-        res.should.have.property("message");
+      testCollection.removeExample().catch(function(err) {
+        err.should.have.property("message");
         done()
       })
     });
@@ -195,9 +195,11 @@ describe('Custom', function() {
       var testCollection = indico.Collection("test");
 
       testCollection.predict().then(function(res) {
-        res.should.have.property("message");
-        done()
-      })
+        console.log("This should not be executed");
+      }).catch(function(err) {
+        err.should.have.property("message");
+        done();
+      });
     });
   });
 
