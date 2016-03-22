@@ -21,3 +21,4 @@ v0.6.0 Fri Jan 22 -- Add text features API
 v0.6.1 Thu Feb 12 -- Update imagefeatures resizing
 v0.6.2 Fri Feb 19 -- Assorted custom collections UX improvements
 v0.7.0 Thu Mar 03 -- Rework of error handling logic, downgrade LWIP to optional dependency
+v0.8.0 Tue Mar 22 -- Addition of emotion API
