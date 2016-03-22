@@ -23,12 +23,28 @@ describe('Text', function() {
     console.warn('Api keys are now required. Skipping some tests.\nhttp://docs.indico.io/v2.0/docs/api-keys')
     return;
   }
+  
   describe('political', function() {
     it('should get the right response format', function(done) {
 
       indico.political("Guns don't kill people, people kill people.")
         .then(function(res) {
           Object.keys(res).should.have.length(4);
+          done();
+        })
+        .catch(function(err){
+            done(err);
+            return;
+        });
+    });
+  });
+
+  describe('emotion', function() {
+    it('should get the right response format', function(done) {
+
+      indico.emotion("I did it. I got into Grad School. Not just any program, but a GREAT program. :-)")
+        .then(function(res) {
+          Object.keys(res).should.have.length(5);
           done();
         })
         .catch(function(err){
