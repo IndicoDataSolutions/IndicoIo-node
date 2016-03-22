@@ -1,7 +1,7 @@
 {
   "name": "indico.io",
   "description": "A Node.js wrapper for the Indico’s API",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "homepage": "https://github.com/IndicoDataSolutions/IndicoIo-node",
   "author": {
     "name": "Joseph Núñez <toctochello@gmail.com>",
