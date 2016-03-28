@@ -41,7 +41,7 @@ describe('Authentication', function() {
   describe('API Key', function() {
     it('Should load configuration from config file', function(done) {
       var apiKeyConfigFile = "api_key_config_file_var";
- 
+
       // ensure process does not take precedence
       var savedKey = process.env.INDICO_API_KEY;
       delete process.env.INDICO_API_KEY;
@@ -157,8 +157,8 @@ describe('Private Cloud', function() {
   describe('Local Deployment', function() {
     it('Should allow easy access to local deploy of indico APIs', function(done) {
       indico.host = "localhost:8000"
-      var url = services.service("/sentiment", null, "key")
-      url.should.equal("http://localhost:8000/sentiment?key=key")
+      var url = services.service("/sentiment", null)
+      url.should.equal("http://localhost:8000/sentiment")
       indico.host = "apiv2.indico.io"
       done();
     });
