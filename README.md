@@ -22,7 +22,6 @@ For API key registration and setup, checkout our [quickstart guide](https://indi
 - Political Analysis
 - Language Detection
 - Keyword Detection
-- Named Entity Extraction
 - Twitter Virality
 - Intersectional Analysis
 - Multi-API Analysis
