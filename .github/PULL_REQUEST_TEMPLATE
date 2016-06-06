@@ -1,0 +1,36 @@
+<!--- For the author to fill in -->
+Reviewers: 
+----------
+<!--- Check yourself off the list after review -->
+- [ ] @mention
+
+What's the purpose of the PR?
+-----------------------------
+<!--- Does it resolve an issue?  Does it add a feature?  Is it a refactor? -->
+<!--- Trello ticket links? Design document links?-->
+<!--- List out intended functionality. -->
+
+Description of changes
+----------------------
+<!--- What code was changed? Why? -->
+
+Notes to reviewers
+------------------
+<!--- Is there anything in particular you want reviewers to check for? -->
+
+
+<!--- For the reviewer -->
+Keep in mind while reviewing code:
+----------------------------------
+- Is relevant code tested?
+- Are added functions/methods documented?
+- Separation of concerns (SOC)
+- Don't repeat yourself (DRY) 
+- Limit the number of positional arguments
+- Is function/method length reasonable?
+- Can code be broken down into smaller components?
+- Where do added functions/methods belong?
+- Are variable names descriptive?
+- Are errors handled appropriately?
+- Can logic be simplified?
+- Does the code make sense in context? (expand the diff)
