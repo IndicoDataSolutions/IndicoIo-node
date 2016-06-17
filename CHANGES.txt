@@ -26,3 +26,4 @@ v0.9.0 Wed Mar 30 -- Pass API key in header instead of url param
 v0.9.1 Thu Mar 31 -- Change default settings for text features and relevance APIs
 v0.9.2 Wed Apr 6  -- Deprecate Named Entities Recognition
 v0.9.3 Wed Apr 27 -- More efficient query for model status
+v0.9.5 Tues Jun 14 -- Political API version 2 upgrade

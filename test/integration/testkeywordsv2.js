@@ -9,7 +9,7 @@ console.warn = function () {};
 describe('TestKeywordsV2', function () {
     if (settings.resolveApiKey() === false) {
       // skip test -- indico auth keys are not available
-      console.warn('Api keys are now required. Skipping some tests.\nhttp://docs.indico.io/v2.0/docs/api-keys')
+      console.warn('Api keys are now required. Skipping some tests.\nhttp://indico.io/docs')
       return;
     }
     describe('single', function() {
