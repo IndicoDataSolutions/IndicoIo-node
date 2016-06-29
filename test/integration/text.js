@@ -77,7 +77,16 @@ describe('Text', function() {
         .then(function(res) {
           res.sort(compare_by_confidence)
           res[0]['text'].should.contain('Barack Obama')
-          done();
+          indico.people(text, {"version": 1})
+            .then(function(resv1) {
+              resv1.sort(compare_by_confidence)
+              expect(Math.abs(res[0]['confidence'] - resv1[0]['confidence']) > .00001)
+              done();
+            })
+            .catch(function(err){
+              done(err);
+              return;
+            });
         })
         .catch(function(err){
             done(err);
@@ -94,7 +103,16 @@ describe('Text', function() {
         .then(function(res) {
           res[0].sort(compare_by_confidence)
           res[0][0]['text'].should.contain('Barack Obama')
-          done();
+          indico.people([text, text], {"version": 1})
+            .then(function(resv1) {
+              resv1.sort(compare_by_confidence)
+              expect(Math.abs(res[0][0]['confidence'] - resv1[0][0]['confidence']) > .00001)
+              done();
+            })
+            .catch(function(err){
+              done(err);
+              return;
+            });
         })
         .catch(function(err){
             done(err);
@@ -106,12 +124,21 @@ describe('Text', function() {
   describe('places', function() {
     it('should get the right response format', function(done) {
 
-      var text = 'Lets all go to Virginia Beach before it gets too cold to wander outside.';
+      var text = 'Lets all go to Virginia beach before it gets too cold to wander outside.';
       indico.places(text)
         .then(function(res) {
           res.sort(compare_by_confidence)
           res[0]['text'].should.contain('Virginia')
-          done();
+           indico.places(text, {"version": 1})
+            .then(function(resv1) {
+              resv1.sort(compare_by_confidence)
+              expect(Math.abs(res[0]['confidence'] - resv1[0]['confidence']) > .00001)
+              done();
+            })
+            .catch(function(err){
+              done(err);
+              return;
+            });
         })
         .catch(function(err){
             done(err);
@@ -123,12 +150,21 @@ describe('Text', function() {
   describe('places', function() {
     it('should get the right response format', function(done) {
 
-      var text = 'Lets all go to Virginia Beach before it gets too cold to wander outside.';
+      var text = 'Lets all go to Virginia beach before it gets too cold to wander outside.';
       indico.places([text, text])
         .then(function(res) {
           res[0].sort(compare_by_confidence)
           res[0][0]['text'].should.contain('Virginia')
-          done();
+          indico.places([text, text], {"version": 1})
+            .then(function(resv1) {
+              resv1.sort(compare_by_confidence)
+              expect(Math.abs(res[0][0]['confidence'] - resv1[0][0]['confidence']) > .00001)
+              done();
+            })
+            .catch(function(err){
+              done(err);
+              return;
+            });
         })
         .catch(function(err){
             done(err);
@@ -144,8 +180,17 @@ describe('Text', function() {
       indico.organizations(text)
         .then(function(res) {
           res.sort(compare_by_confidence)
-          res[0]['text'].should.contain('ISIS')
-          done();
+          res[0]['text'].should.contain('U.S. Special Operations')
+          indico.organizations(text, {"version": 1})
+            .then(function(resv1) {
+              resv1.sort(compare_by_confidence)
+              expect(Math.abs(res[0]['confidence'] - resv1[0]['confidence']) > .00001)
+              done();
+            })
+            .catch(function(err){
+              done(err);
+              return;
+            });
         })
         .catch(function(err){
             done(err);
@@ -161,8 +206,17 @@ describe('Text', function() {
       indico.organizations([text, text])
         .then(function(res) {
           res[0].sort(compare_by_confidence)
-          res[0][0]['text'].should.contain('ISIS')
-          done();
+          res[0][0]['text'].should.contain('U.S. Special Operations')
+          indico.organizations([text, text], {"version": 1})
+            .then(function(resv1) {
+              resv1.sort(compare_by_confidence)
+              expect(Math.abs(res[0][0]['confidence'] - resv1[0][0]['confidence']) > .00001)
+              done();
+            })
+            .catch(function(err){
+              done(err);
+              return;
+            });
         })
         .catch(function(err){
             done(err);
