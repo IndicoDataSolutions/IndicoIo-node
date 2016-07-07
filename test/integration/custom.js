@@ -6,7 +6,7 @@ var indico = require('../..')
 
 
 describe('Custom', function() {
-  this.timeout(35000);
+  this.timeout(30000);
 
   var testData = [
     ['aidan rules', 'test_writer'],
@@ -223,5 +223,100 @@ describe('Custom', function() {
       });
     });
   })
+
+  describe('rename', function() {
+    it('should rename collection', function(done) {
+      indico.Collection("test").clear().then(function() {
+        var testCollection = indico.Collection("test");
+        testCollection.addData(testData).then(function() {
+          testCollection.train().then(testCollection.wait).then(function() {
+            testCollection.rename("test2").then(function() {
+              testCollection.collection.should.equal('test2');
+              testCollection.clear().then(function() {
+                done();
+              })
+            })
+          });
+        });
+      });
+    });
+  })
+
+  describe('register', function() {
+    it('should register collection', function(done) {
+      indico.Collection("test").clear().then(function() {
+        var testCollection = indico.Collection("test");
+        testCollection.addData(testData).then(function() {
+          testCollection.train().then(testCollection.wait).then(function() {
+            testCollection.register().then(function() {
+              testCollection.info().then(function(info) {
+                info['registered'].should.equal(true);
+                info['public'].should.equal(false);
+                testCollection.deregister().then(function() {
+                  testCollection.info().then(function(info) {
+                    info['registered'].should.equal(false);
+                    info['public'].should.equal(false);
+                    done();
+                  })
+                })
+              });
+            });
+          });
+        });
+      });
+    });
+  })
+
+  describe('register public', function() {
+    it('should register public collection', function(done) {
+      indico.Collection("test").clear().then(function() {
+        var testCollection = indico.Collection("test");
+        testCollection.addData(testData).then(function() {
+          testCollection.train().then(testCollection.wait).then(function() {
+            var config = {'make_public': true};
+            testCollection.register(config).then(function() {
+              testCollection.info().then(function(info) {
+                info['registered'].should.equal(true);
+                info['public'].should.equal(true);
+                testCollection.deregister().then(function() {
+                  testCollection.info().then(function(info) {
+                    info['registered'].should.equal(false);
+                    info['public'].should.equal(false);
+                    done();
+                  })
+                })
+              });
+            });
+          });
+        });
+      });
+    });
+  })
+
+
+  describe('authorize', function() {
+    it('should authorize another user to access a registered collection', function(done) {
+      indico.Collection("test").clear().then(function() {
+        var testCollection = indico.Collection("test");
+        testCollection.addData(testData).then(function() {
+          testCollection.train().then(testCollection.wait).then(function() {
+            testCollection.register().then(function() {
+              testCollection.authorize('contact@indico.io').then(function() {
+                testCollection.info().then(function(info) {
+                  info['permissions']['read'].should.contain('contact@indico.io');
+                  testCollection.deauthorize('contact@indico.io').then(function() {
+                    testCollection.deregister().then(function() {
+                      done();
+                    })
+                  })
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  })
+
 
 });
