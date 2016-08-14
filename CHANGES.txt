@@ -29,3 +29,4 @@ v0.9.3 Wed Apr 27 -- More efficient query for model status
 v0.9.5 Tues Jun 14 -- Political API version 2 upgrade
 v0.9.6 Wed Jun 29 -- NER version 2
 v0.10.0 Thu Jul 7 -- Support for custom collection permissioning
+v0.10.1 Sat Aug 14 -- Hotfix for url protocols
