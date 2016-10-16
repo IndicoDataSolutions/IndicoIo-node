@@ -31,3 +31,4 @@ v0.9.6 Wed Jun 29 -- NER version 2
 v0.10.0 Thu Jul 7 -- Support for custom collection permissioning
 v0.10.1 Sat Aug 14 -- Hotfix for url protocols
 v0.10.3 Tue Sep 27 -- Add summarization API support
+v0.10.4 Tue Sep 27 -- FIX lwip dependency - 0.0.8 -> 0.0.9
