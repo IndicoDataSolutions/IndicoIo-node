@@ -20,8 +20,12 @@ For API key registration and setup, checkout our [quickstart guide](https://indi
 - Sentiment Analysis
 - Text Tagging
 - Political Analysis
-- Language Detection
 - Keyword Detection
+- Summarization
+- Personality Detection
+- People, Place, and Organizations Detection
+- Text Relevance Analysis
+- Language Detection
 - Twitter Virality
 - Intersectional Analysis
 - Multi-API Analysis
@@ -40,7 +44,7 @@ For API key registration and setup, checkout our [quickstart guide](https://indi
 
 Full Documentation
 ------------
-Detailed documentation and further code examples are available at [indico.reame.io](https://indico.io/docs).
+Detailed documentation and further code examples are available at [indico.io/docs](https://indico.io/docs).
 
 
 ### Examples
