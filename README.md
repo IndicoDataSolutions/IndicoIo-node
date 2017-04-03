@@ -121,7 +121,7 @@ indico
 
 ```
 
-###Batch
+### Batch
 
 Batch requests allow you to process larger volumes of data more efficiently by grouping many examples into a single request.  Simply call the batch method that corresponds to the API you'd like to use, and ensure your data is wrapped in an array.
 
