@@ -33,3 +33,4 @@ v0.10.1 Sat Aug 14 -- Hotfix for url protocols
 v0.10.3 Tue Sep 27 -- Add summarization API support
 v0.10.4 Tue Sep 27 -- FIX lwip dependency - 0.0.8 -> 0.0.9
 v0.10.5 Tue Oct 19 -- Add PDF Extraction support
+v0.10.6 Wed June 07 -- Add Custom Collections Explain

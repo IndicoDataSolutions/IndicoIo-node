@@ -1,7 +1,7 @@
 {
   "name": "indico.io",
   "description": "A Node.js wrapper for the Indico’s API",
-  "version": "0.10.5",
+  "version": "0.10.6",
   "homepage": "https://github.com/IndicoDataSolutions/IndicoIo-node",
   "author": {
     "name": "Joseph Núñez <toctochello@gmail.com>",
@@ -20,12 +20,10 @@
   "bugs": {
     "url": "https://github.com/IndicoDataSolutions/IndicoIo-node/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/IndicoDataSolutions/IndicoIo-node/blob/master/LICENSE"
-    }
-  ],
+  "licenses": [{
+    "type": "MIT",
+    "url": "https://github.com/IndicoDataSolutions/IndicoIo-node/blob/master/LICENSE"
+  }],
   "main": "./lib/indico",
   "dependencies": {
     "bluebird": "^2.9.24",
